@@ -33,14 +33,6 @@
     url('@/assets/fonts/Cairo-Bold.woff') format('woff');
 }
 
-@font-face {
-  font-family: 'Cairo';
-  font-style: normal;
-  font-weight: 800;
-  src: url('@/assets/fonts/Cairo-ExtraBold.woff2') format('woff2'),
-    url('@/assets/fonts/Cairo-ExtraBold.woff') format('woff');
-}
-
 *,
 *::before,
 *::after {
