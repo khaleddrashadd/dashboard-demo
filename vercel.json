@@ -4,11 +4,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "build": {
-    "env": {
-      "ESLINT_NO_DEV_ERRORS": "true",
-      "ESLINT_NO_PROD_ERRORS": "true"
-    }
-  }
+  ]
 }
