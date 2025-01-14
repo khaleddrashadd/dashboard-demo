@@ -34,7 +34,7 @@ export default function Home() {
           </CardContent>
         </Card>
         {/* Three Pie Charts in a row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           <Card>
             <CardHeader>
               <CardTitle className="text-right">معدل التأخير</CardTitle>
@@ -63,14 +63,16 @@ export default function Home() {
           </Card>
         </div>
         {/* Bar Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-right">حالة العقود</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ContractStatusChart />
-          </CardContent>
-        </Card>
+        <div className="mt-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-right">حالة العقود</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ContractStatusChart />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
