@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 const Footer = () => {
   return (
     <span className="block mr-auto font-semibold text-sm text-end leading-6 px-4 py-3 text-ivory-800">
@@ -7,4 +9,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

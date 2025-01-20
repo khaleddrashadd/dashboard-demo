@@ -41,12 +41,12 @@ const CollectionPerformanceChart = () => {
               y2="1">
               <stop
                 offset="5%"
-                stopColor="#1E88E5"
+                stopColor="#0095FF"
                 stopOpacity={0.2}
               />
               <stop
                 offset="95%"
-                stopColor="#1E88E5"
+                stopColor="#0095FF"
                 stopOpacity={0}
               />
             </linearGradient>
@@ -58,12 +58,12 @@ const CollectionPerformanceChart = () => {
               y2="1">
               <stop
                 offset="5%"
-                stopColor="#4CAF50"
+                stopColor="#6FD195"
                 stopOpacity={0.2}
               />
               <stop
                 offset="95%"
-                stopColor="#4CAF50"
+                stopColor="#6FD195"
                 stopOpacity={0}
               />
             </linearGradient>
@@ -76,7 +76,8 @@ const CollectionPerformanceChart = () => {
           <Area
             type="monotone"
             dataKey="actual"
-            stroke="#1E88E5"
+            name="الآداء الفعلي"
+            stroke="#0095FF"
             fillOpacity={1}
             fill="url(#colorActual)"
             strokeWidth={2}
@@ -85,7 +86,8 @@ const CollectionPerformanceChart = () => {
           <Area
             type="monotone"
             dataKey="target"
-            stroke="#4CAF50"
+            name="الآداء المتوقع"
+            stroke="#6FD195"
             fillOpacity={1}
             fill="url(#colorTarget)"
             strokeWidth={2}

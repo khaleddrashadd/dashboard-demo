@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import Contracts from './pages/Contracts';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           />
         </Route>
       </Route>
+      <Route
+        path="/login"
+        element={<Login />}
+      />
     </Routes>
   );
 }

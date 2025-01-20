@@ -1,16 +1,11 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '../components/ui/card';
-import CollectionPerformanceChart from '../features/portfolioPerformance/CollectionPerformanceChart';
-import DelayRateChart from '../features/portfolioPerformance/DelayRateChart';
-import InstallmentNumberChart from '../features/portfolioPerformance/InstallmentNumberChart';
-import CustomerSatisfactionChart from '../features/portfolioPerformance/CustomerSatisfactionChart';
-import ContractStatusChart from '../features/portfolioPerformance/ContractStatusChart';
-import AppHeading from '../components/ui/AppHeading';
-import PortfolioFilter from '../features/portfolioPerformance/PortfolioFilter';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/card';
+import CollectionPerformanceChart from '../features/portfolioPerformance/components/CollectionPerformanceChart';
+import DelayRateChart from '../features/portfolioPerformance/components/DelayRateChart';
+import InstallmentNumberChart from '../features/portfolioPerformance/components/InstallmentNumberChart';
+import CustomerSatisfactionChart from '../features/portfolioPerformance/components/CustomerSatisfactionChart';
+import ContractStatusChart from '../features/portfolioPerformance/components/ContractStatusChart';
+import AppHeading from '../components/AppHeading';
+import PortfolioFilter from '../features/portfolioPerformance/components/PortfolioFilter';
 
 export default function Home() {
   return (

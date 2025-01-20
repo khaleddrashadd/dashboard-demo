@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -12,14 +13,13 @@ export default {
         '2xs': '0.625rem',
         '3xs': '0.5rem',
       },
-
       screens: {
-        xs: '480px', // Matches Bootstrap's xs
-        sm: '576px', // Matches Bootstrap's sm breakpoint
-        md: '768px', // Matches Bootstrap's md breakpoint
-        lg: '992px', // Matches Bootstrap's lg breakpoint
-        xl: '1200px', // Matches Bootstrap's xl breakpoint
-        '2xl': '1400px', // Matches Bootstrap's xxl breakpoint
+        xs: '480px',
+        sm: '576px',
+        md: '768px',
+        lg: '992px',
+        xl: '1200px',
+        '2xl': '1400px',
       },
       colors: {
         primary: {
@@ -31,6 +31,8 @@ export default {
           500: '#00609D',
           600: '#01376A',
           700: '#25215D',
+          DEFAULT: '#00609D',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
           50: '#CEEFDB',
@@ -41,6 +43,8 @@ export default {
           300: '#55D236',
           400: '#00A98F',
           500: '#1B8354',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         extended: {
           50: '#FFE6CC',
@@ -70,8 +74,45 @@ export default {
           900: '#565656',
           950: '#121212',
         },
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
+        },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };

@@ -4,9 +4,9 @@ import ChartCustomLabel from './ChartCustomLabel';
 import { useOnClickOutside } from 'usehooks-ts';
 
 const installmentsData = [
-  { name: 'لم تستحق', value: 567, color: '#4CAF50' },
-  { name: 'سداد جزئي', value: 843, color: '#FFA726' },
-  { name: 'سداد كلي', value: 1337, color: '#1E88E5' },
+  { name: 'لم تستحق', value: 567, color: '#6FD195' },
+  { name: 'سداد جزئي', value: 843, color: '#FFAE4C  ' },
+  { name: 'سداد كلي', value: 1337, color: '#0095FF' },
 ];
 const InstallmentNumberChart = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -58,6 +58,7 @@ const InstallmentNumberChart = () => {
                     transform: `scale(${activeIndex === index ? 1.05 : 1})`,
                     transformOrigin: 'center',
                     transition: 'all 0.3s ease',
+                    cursor: 'pointer',
                   }}
                 />
               ))}

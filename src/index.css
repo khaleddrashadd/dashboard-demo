@@ -48,3 +48,26 @@ body {
 .recharts-responsive-container *:focus {
   outline: none;
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #7d99b3;
+    border-radius: 4px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #728ca3;
+  }
+}

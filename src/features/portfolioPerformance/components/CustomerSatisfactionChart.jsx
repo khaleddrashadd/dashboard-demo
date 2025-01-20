@@ -11,9 +11,9 @@ const CustomerSatisfactionChart = () => {
 
   // Mock data for the satisfaction pie chart
   const satisfactionData = [
-    { name: 'Satisfied', value: 27, color: '#4CAF50' },
-    { name: 'Neutral', value: 60, color: '#1E88E5' },
-    { name: 'Unsatisfied', value: 13, color: '#FFA726' },
+    { name: 'Satisfied', value: 27, color: '#6FD195' },
+    { name: 'Neutral', value: 60, color: '#0095FF' },
+    { name: 'Unsatisfied', value: 13, color: '#FFAE4C' },
   ];
 
   const handleSelectSegment = (index) => {

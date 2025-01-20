@@ -6,8 +6,8 @@ const DelayRateChart = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const paymentStatusData = [
-    { name: 'سداد متأخر', value: 73, color: '#1E88E5' },
-    { name: 'سداد في الموعد', value: 27, color: '#4CAF50' },
+    { name: 'سداد متأخر', value: 73, color: '#0095FF' },
+    { name: 'سداد في الموعد', value: 27, color: '#6FD195' },
   ];
   const chartRef = useRef(null);
 
@@ -67,6 +67,7 @@ const DelayRateChart = () => {
                     transform: `scale(${activeIndex === index ? 1.05 : 1})`,
                     transformOrigin: 'center',
                     transition: 'all 0.3s ease',
+                    cursor: 'pointer',
                   }}
                 />
               ))}
