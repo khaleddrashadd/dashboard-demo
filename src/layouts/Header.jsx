@@ -1,8 +1,8 @@
-import ChevronIcon from '../assets/icons/chevron.svg?react';
-import NotificationIcon from '../assets/icons/notification.svg?react';
-import CalendarIcon from '../assets/icons/calendar.svg?react';
-import LogoutIcon from '../assets/icons/logout.svg?react';
-import redfLogo from '../assets/images/redf-logo.jpeg';
+import ChevronIcon from "../assets/icons/chevron.svg?react";
+import NotificationIcon from "../assets/icons/notification.svg?react";
+import CalendarIcon from "../assets/icons/calendar.svg?react";
+import LogoutIcon from "../assets/icons/logout.svg?react";
+import redfLogo from "../assets/images/redf-logo.jpeg";
 
 const Header = () => {
   return (
