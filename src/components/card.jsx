@@ -1,9 +1,15 @@
 // components/ui/card.tsx
 
+import { cn } from '@/lib/utils';
+
 export function Card({ className, ...props }) {
+  //box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.16);
   return (
     <div
-      className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className}`}
+      className={cn(
+        'rounded-lg border bg-card text-card-foreground shadow-md h-full',
+        className
+      )}
       {...props}
     />
   );
@@ -12,7 +18,7 @@ export function Card({ className, ...props }) {
 export function CardHeader({ className, ...props }) {
   return (
     <div
-      className={`flex flex-col space-y-1.5 p-6 ${className}`}
+      className={`flex flex-col border-b mb-4 text-xl ${className}`}
       {...props}
     />
   );
@@ -20,8 +26,11 @@ export function CardHeader({ className, ...props }) {
 
 export function CardTitle({ className, ...props }) {
   return (
-    <h3
-      className={`text-lg font-semibold leading-none tracking-tight ${className}`}
+    <div
+      className={cn(
+        `text-lg font-semibold leading-none tracking-tight`,
+        className
+      )}
       {...props}
     />
   );
@@ -30,7 +39,7 @@ export function CardTitle({ className, ...props }) {
 export function CardContent({ className, ...props }) {
   return (
     <div
-      className={`p-6 pt-0 ${className}`}
+      className={className}
       {...props}
     />
   );

@@ -1,8 +1,8 @@
 import { Card, CardContent } from '../components/card';
 import ContractGrowthRate from '../features/contracts/ContractsGrowthRate';
 import ContractStatus from '../features/contracts/ContractStatus';
-import Claudi from './Claudi';
-import ContractsTable from './Table';
+import Claudi from '../components/testComponent/Test';
+import ContractsTable from '../components/testComponent/Table';
 
 const Contracts = () => {
   return (

@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card } from '@/components/card';
-import Pagination from '../components/Pagination';
+import Pagination from '../Pagination';
 
 const ContractsTable = () => {
   const data = [
