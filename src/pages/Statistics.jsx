@@ -6,6 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Card from "@/features/statistics/Card";
+import CardSkeleton from "@/features/statistics/CardSkeleton";
 
 const Statistics = () => {
   const cardsData = [
@@ -44,30 +45,57 @@ const Statistics = () => {
     },
   ];
 
+  const portfolios = [
+    {
+      id: 1,
+      name: "Portfolio",
+    },
+    {
+      id: 2,
+      name: "Portfolio",
+    },
+    {
+      id: 3,
+      name: "Portfolio",
+    },
+    {
+      id: 4,
+      name: "Portfolio",
+    },
+  ];
+
+  const handlePortfolioChange = (selectedId) => {
+    console.log("Selected Portfolio ID:", selectedId);
+  };
+
   return (
     <div className="px-6 mt-4 z-20 ">
       {/*  */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4">
         <h2 className=" font-bold text-2xl">الإحصائيات</h2>
-        <div className=" flex flex-col gap-2">
+        <div className=" flex flex-col gap-2 bg-primary-50 rounded-lg shadow-md p-3">
           <h3 className="title text-ivory-900 text-sm">المحفظة</h3>
-          <Select>
-            <SelectTrigger className="w-[180px]">
+          <Select onValueChange={handlePortfolioChange}>
+            <SelectTrigger className="w-[180px] bg-white">
               <SelectValue placeholder="Theme" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              {portfolios.map((item) => (
+                <SelectItem value={item.id} key={item.id}>
+                  {item.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
       </div>
       {/*  */}
-      <div className="grid grid-cols-[repeat(2,50%)] gap-4">
-        {cardsData.map((card, index) => (
-          <Card key={index} card={card} />
-        ))}
+      <div className="grid md:grid-cols-[repeat(2,1fr)] grid-cols-1 gap-4">
+        {cardsData.length > 0 ? (
+          cardsData.map((card, index) => <Card key={index} card={card} />)
+        ) : (
+          <CardSkeleton />
+        )}
       </div>
     </div>
   );
