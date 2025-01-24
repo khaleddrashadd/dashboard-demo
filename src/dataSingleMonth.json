@@ -1,0 +1,51 @@
+{
+  "collectionPerformance": {
+    "1": [{ "name": "يناير", "actual": 6.2, "target": 7.5 }],
+    "2": [{ "name": "فبراير", "actual": 7.4, "target": 6.1 }]
+  },
+  "portfoliosTotalContract": [
+    { "name": "SNB", "value": 20 },
+    { "name": "NBE", "value": 6.5 },
+    { "name": "EGP", "value": 4.5 },
+    { "name": "SFA", "value": 5.8 }
+  ],
+  "paymentAmount": {
+    "1": [{ "month": "يناير", "unpaid": 30, "partialPaid": 12, "paid": 14.02 }],
+    "2": [
+      { "month": "فبراير", "unpaid": 18, "partialPaid": 17.82, "paid": 13.22 }
+    ]
+  },
+  "contractStatus": [
+    { "name": "نشط", "value": 60 },
+    { "name": "مغلق", "value": 40 }
+  ],
+  "paymentsStatus": [
+    { "name": "سداد كلي", "value": 40 },
+    { "name": "لم تسدد", "value": 20 },
+    { "name": "سداد جزئي", "value": 40 }
+  ],
+  "bucketContracts": [
+    { "name": "Current", "value": 2 },
+    { "name": "Grace period", "value": 1.5 },
+    { "name": "Bucket 1", "value": 4 },
+    { "name": "Bucket 2", "value": 4 },
+    { "name": "Bucket 3", "value": 1.5 },
+    { "name": "Bucket 4", "value": 1.2 },
+    { "name": "Bucket 5", "value": 1 },
+    { "name": "Bucket 6", "value": 0.8 },
+    { "name": "Write off", "value": 1 },
+    { "name": "Closed", "value": 0.5 }
+  ],
+  "bucketContractsRate": [
+    { "name": "Current", "value": 2.643 },
+    { "name": "Grace period", "value": 0.643 },
+    { "name": "Bucket 1", "value": 1.802 },
+    { "name": "Bucket 2", "value": 1.291 },
+    { "name": "Bucket 3", "value": 0.841 },
+    { "name": "Bucket 4", "value": 0.511 },
+    { "name": "Bucket 5", "value": 0.28 },
+    { "name": "Bucket 6", "value": 0.1 },
+    { "name": "Write off", "value": 0.643 },
+    { "name": "Closed", "value": 0.3 }
+  ]
+}

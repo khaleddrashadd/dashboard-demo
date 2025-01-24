@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Bar,
   BarChart,
@@ -11,19 +10,11 @@ import {
 } from 'recharts';
 import CustomTooltip from './CustomTooltip';
 
-const data3 = [
-  { name: 'SNB', value: 200 },
-  { name: 'NBE', value: 65 },
-  { name: 'EGP', value: 45 },
-  { name: 'SFA', value: 58 },
-];
-
-const PortfoliosTotalContractsChart = () => {
-  const [selectedBar, setSelectedBar] = useState(null);
-
-  const handleClick = (entry) => {
-    setSelectedBar((prev) => (prev ? null : entry.name));
-  };
+const PortfoliosTotalContractsChart = ({
+  data,
+  setSelectedPortfolio,
+  selectedPortfolio,
+}) => {
   return (
     <div
       className="h-64"
@@ -33,7 +24,7 @@ const PortfoliosTotalContractsChart = () => {
         height="100%"
         minHeight={240}>
         <BarChart
-          data={data3}
+          data={data}
           layout="vertical"
           margin={{ right: 30, bottom: 20 }}>
           <CartesianGrid
@@ -55,12 +46,20 @@ const PortfoliosTotalContractsChart = () => {
           <Bar
             dataKey="value"
             fill="#00609D"
-            onClick={handleClick}>
-            {data3.map((entry) => (
+            onClick={(entry) =>
+              setSelectedPortfolio((prev) =>
+                prev === entry.id ? '' : entry.id
+              )
+            }>
+            {data?.map((entry) => (
               <Cell
                 key={entry.name}
                 fill="#00609D"
-                opacity={selectedBar && selectedBar !== entry.name ? 0.3 : 0.8}
+                opacity={
+                  selectedPortfolio && selectedPortfolio !== entry.id
+                    ? 0.3
+                    : 0.8
+                }
                 cursor="pointer"
               />
             ))}

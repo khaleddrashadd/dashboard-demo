@@ -1,6 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const TotalValues = ({ children }) => {
+const TotalValues = ({ children, isLoading }) => {
+  if (isLoading) {
+    return <Skeleton className="w-full h-[21.8rem]" />;
+  }
   return (
     <Card className="h-full">
       <CardHeader className="px-4 py-4">

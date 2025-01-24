@@ -25,8 +25,8 @@ const Contracts = () => {
         </div>
         <div></div>
       </div>
-      <ContractsTable />
-      <Claudi />
+      {/* <ContractsTable />
+      <Claudi /> */}
     </>
   );
 };
