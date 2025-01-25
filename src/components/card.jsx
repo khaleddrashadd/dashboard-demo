@@ -1,13 +1,13 @@
 // components/ui/card.tsx
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 export function Card({ className, ...props }) {
   //box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.16);
   return (
     <div
       className={cn(
-        'rounded-lg border bg-card text-card-foreground shadow-md h-full',
+        "rounded-lg border bg-card text-card-foreground shadow-md h-full",
         className
       )}
       {...props}
@@ -37,10 +37,5 @@ export function CardTitle({ className, ...props }) {
 }
 
 export function CardContent({ className, ...props }) {
-  return (
-    <div
-      className={className}
-      {...props}
-    />
-  );
+  return <div className={className} {...props} />;
 }

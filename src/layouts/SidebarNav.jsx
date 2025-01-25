@@ -54,8 +54,8 @@ const SidebarNav = () => {
             isSidebarOpen={isSidebarOpen}
             routes={[
               { title: "الإحصائيات", to: "/reports/statistics" },
+              { title: "الدفعات", to: "/reports/installments" },
               { title: "العقود", to: "/reports/contracts" },
-              { title: "الدفعات", to: "/payments" },
               { title: "الحسابات", to: "/accounts" },
               { title: "التحصيل", to: "/collections" },
             ]}

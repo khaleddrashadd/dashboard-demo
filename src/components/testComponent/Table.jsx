@@ -5,24 +5,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Card } from '@/components/card';
-import Pagination from '../Pagination';
+} from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
+import Pagination from "../Pagination";
+import { cn } from "@/lib/utils";
 
-const ContractsTable = () => {
+const ContractsTable = ({ className, ...props }) => {
   const data = [
     {
-      contractId: '123456780',
-      realEstateId: '987654',
-      fullName: 'مصطفى الشيتي',
-      nationalId: '1236224577',
-      unitId: '987654',
-      contractStatus: 'Bucket 1',
-      dateInDays: '9',
-      directAmount: '30900 ريال',
-      monthlyAmount: '30900 ريال',
-      installmentAmount: '30900 ريال',
-      remainingAmount: '30900 ريال',
+      contractId: "123456780",
+      realEstateId: "987654",
+      fullName: "مصطفى الشيتي",
+      nationalId: "1236224577",
+      unitId: "987654",
+      contractStatus: "Bucket 1",
+      dateInDays: "9",
+      directAmount: "30900 ريال",
+      monthlyAmount: "30900 ريال",
+      installmentAmount: "30900 ريال",
+      remainingAmount: "30900 ريال",
     },
     // Add more sample data here
   ];
@@ -36,7 +37,7 @@ const ContractsTable = () => {
   };
 
   return (
-    <Card className="w-full px-4">
+    <Card className={cn("w-full", className)} {...props}>
       <div className="rounded-md border">
         <Table dir="rtl">
           <TableHeader className="text-sm">
