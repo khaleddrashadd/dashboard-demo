@@ -1,32 +1,34 @@
-import { Card, CardContent } from '../components/card';
-import ContractGrowthRate from '../features/contracts/ContractsGrowthRate';
-import ContractStatus from '../features/contracts/ContractStatus';
-import Claudi from '../components/testComponent/Test';
-import ContractsTable from '../components/testComponent/Table';
+import ChTest from './ChTest';
+import AppHeading from '@/components/AppHeading';
+import ContractsStatuses from '@/features/contracts/ContractsStatuses';
+import { useState } from 'react';
+import ContractsStatusesChart from '@/features/contracts/ContractsStatusesChart';
+import BucketGrowthRate from '@/features/contracts/BucketGrowthRate';
+import BucketGrowthRateChart from '@/features/contracts/BucketGrowthRateChart';
 
 const Contracts = () => {
+  const [selectedBucket, setSelectedBucket] = useState(null);
+
   return (
     <>
-      <div className="grid grid-cols-12">
-        <Card className="mt-4 w-full col-span-3">
-          <CardContent>FORM PLACEHOLDER</CardContent>
-        </Card>
-        <div className="flex flex-col w-full col-span-9">
-          <Card className="mt-4 w-full">
-            <CardContent>
-              <ContractGrowthRate />
-            </CardContent>
-          </Card>
-          <Card className="mt-4 w-full">
-            <CardContent>
-              <ContractStatus />
-            </CardContent>
-          </Card>
+      <div className="p-4">
+        <div className="flex items-center justify-between flex-col gap-y-4 md:flex-row mb-4">
+          <AppHeading title="العقود" />
+          FILTER
         </div>
-        <div></div>
+        <div className="flex flex-col gap-y-4">
+          <div>
+            <ContractsStatuses>
+              <ContractsStatusesChart setSelectedBucket={setSelectedBucket} />
+            </ContractsStatuses>
+          </div>
+          <div>
+            <BucketGrowthRate>
+              <BucketGrowthRateChart selectedBucket={selectedBucket} />
+            </BucketGrowthRate>
+          </div>
+        </div>
       </div>
-      {/* <ContractsTable />
-      <Claudi /> */}
     </>
   );
 };

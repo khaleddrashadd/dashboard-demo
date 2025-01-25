@@ -1,3 +1,4 @@
+import CustomTooltip from '@/components/CustomTooltip';
 import { useMemo } from 'react';
 import {
   BarChart,
@@ -9,7 +10,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-import CustomTooltip from './CustomTooltip';
 const CollectionPerformanceChart = ({ data }) => {
   const displayData = useMemo(() => {
     return data || [];

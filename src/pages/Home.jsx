@@ -49,7 +49,10 @@ export default function Home() {
   return (
     <div className="p-4 space-y-4">
       <div className="flex items-center justify-between flex-col gap-y-4 md:flex-row">
-        <AppHeading title="لوحة متابعة آداء المحافظ" />
+        <AppHeading
+          title="لوحة متابعة آداء المحافظ"
+          className=" py-6 px-4 bg-white rounded-md shadow-md"
+        />
         <PortfolioFilter />
       </div>
       <div>

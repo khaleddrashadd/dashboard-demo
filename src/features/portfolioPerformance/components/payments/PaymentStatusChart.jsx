@@ -1,5 +1,5 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-import CustomPieTooltip from './CustomPieTooltip';
+import CustomPieTooltip from '../../../../components/CustomPieTooltip';
 import { useMemo } from 'react';
 import CustomLabel from './CustomLabel';
 

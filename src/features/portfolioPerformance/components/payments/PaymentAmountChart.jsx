@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import CustomTooltip from './CustomTooltip';
+import CustomTooltip from '../../../../components/CustomTooltip';
 const COLORS = {
   unpaid: '#33AAFF', // Blue
   partialPaid: '#6FD195', // Green

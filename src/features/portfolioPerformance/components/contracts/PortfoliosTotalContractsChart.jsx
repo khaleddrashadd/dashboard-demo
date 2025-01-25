@@ -1,3 +1,4 @@
+import CustomTooltip from '@/components/CustomTooltip';
 import {
   Bar,
   BarChart,
@@ -8,7 +9,6 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import CustomTooltip from './CustomTooltip';
 
 const PortfoliosTotalContractsChart = ({
   data,
@@ -65,7 +65,7 @@ const PortfoliosTotalContractsChart = ({
             ))}
           </Bar>
           <Tooltip
-            content={<CustomTooltip />}
+            content={<CustomTooltip showKey={false} />}
             cursor={{ fill: '#00619d', opacity: 0.1 }}
           />
         </BarChart>

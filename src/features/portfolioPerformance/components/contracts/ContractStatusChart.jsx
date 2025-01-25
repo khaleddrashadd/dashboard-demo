@@ -1,7 +1,7 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-import CustomPieTooltip from './CustomPieTooltip';
 import CustomLabel from './CustomLabel';
 import { useMemo } from 'react';
+import CustomPieTooltip from '@/components/CustomPieTooltip';
 
 const COLORS = {
   1: '#0095FF',

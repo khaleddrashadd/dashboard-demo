@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import CustomBarTooltip from './CustomBarTooltip';
+import CustomBarTooltip from '../../../../components/CustomBarTooltip';
 import { useMemo } from 'react';
 
 const COLORS = {
@@ -18,7 +18,7 @@ const COLORS = {
   5: '#FFAE4C', // Light Orange
   6: '#F08747', // Orange
   7: '#F66143', // Light Red
-  8: '#F66143', // Red
+  8: '#F03C3C', // Red
   9: '#DA0000', // Dark Gray
   10: '#626262', // Gray
 };
