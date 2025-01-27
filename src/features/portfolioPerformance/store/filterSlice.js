@@ -5,7 +5,7 @@ const initialState = {
   selectedMonth: ' ',
 };
 
-export const counterSlice = createSlice({
+export const homeDateFilterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
@@ -19,8 +19,8 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-const filterReducer = counterSlice.reducer;
+const filterReducer = homeDateFilterSlice.reducer;
 export default filterReducer;
-export const { selectMonth, selectYear } = counterSlice.actions;
+export const { selectMonth, selectYear } = homeDateFilterSlice.actions;
 export const getSelectedYear = (state) => state.filter.selectedYear;
 export const getSelectedMonth = (state) => state.filter.selectedMonth;

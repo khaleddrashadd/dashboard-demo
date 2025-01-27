@@ -41,7 +41,7 @@ const Pagination = ({
           variant="outline"
           key={1}
           onClick={() => handlePageChange(1)}
-          className="px-3 py-2 rounded ">
+          className="px-3 py-2 rounded">
           1
         </Button>
       );
@@ -102,7 +102,26 @@ const Pagination = ({
   };
 
   return (
-    <div className="flex items-center justify-between px-2 py-4">
+    <div className="flex items-center px-2 py-4 gap-3 justify-end">
+      <div className="flex items-center gap-1">
+        <Button
+          variant="outline"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="p-2 rounded rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed">
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+
+        {renderPageNumbers()}
+
+        <Button
+          variant="outline"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+          <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
+        </Button>
+      </div>
       <Select
         value={pageSize.toString()}
         onValueChange={handleValueChange}>
@@ -115,26 +134,6 @@ const Pagination = ({
           {totalItems > 20 && <SelectItem value="50">50/page</SelectItem>}
         </SelectContent>
       </Select>
-
-      <div className="flex items-center gap-1">
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="p-2 rounded  rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed">
-          <ChevronLeft className="w-4 h-4" />
-        </Button>
-
-        {renderPageNumbers()}
-
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="p-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed">
-          <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
-        </Button>
-      </div>
     </div>
   );
 };
