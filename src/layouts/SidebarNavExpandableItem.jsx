@@ -49,7 +49,7 @@ const SidebarNavExpandableItem = ({
           } ${routes.length ? 'p-2' : ''}`}>
           {routes.map((route) => (
             <NavLink
-              key={route?.title}
+              key={route?.to}
               to={route?.to}
               className="block px-6 py-[10px] duration-300 hover:text-secondary-200 text-xs select-none">
               {route?.title}

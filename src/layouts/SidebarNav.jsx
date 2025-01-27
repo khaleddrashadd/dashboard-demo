@@ -50,15 +50,10 @@ const SidebarNav = () => {
             isSidebarOpen={isSidebarOpen}
             routes={[
               { title: 'الإحصائيات', to: '/reports/statistics' },
-              { title: 'العقود', to: '/reports/contracts' },
-              { title: 'الدفعات', to: '/payments' },
-              { title: 'الحسابات', to: '/accounts' },
-              { title: 'التحصيل', to: '/collections' },
-              { title: 'الإحصائيات', to: '/reports/statistics' },
               { title: 'الدفعات', to: '/reports/installments' },
               { title: 'العقود', to: '/reports/contracts' },
-              { title: 'الحسابات', to: '/accounts' },
-              { title: 'التحصيل', to: '/collections' },
+              { title: 'الحسابات', to: '/reports/accounts' },
+              { title: 'التحصيل', to: '/reports/collections' },
             ]}
             handleOpenSidebar={handleOpenSidebar}
           />
@@ -71,7 +66,7 @@ const SidebarNav = () => {
               { title: 'ترحيل دفعات', to: '/payments' },
               { title: 'سداد مبكر', to: '/accounts' },
               { title: 'حالة وفاة', to: '/collections' },
-              { title: 'حالة تقرير سمه', to: '/collections' },
+              { title: 'حالة تقرير سمه', to: '/simah' },
             ]}
             handleOpenSidebar={handleOpenSidebar}
           />
