@@ -1,0 +1,49 @@
+{
+  "collectionPerformance": {
+    "all": [{ "name": "", "actual": 208.54, "target": 388.54 }]
+  },
+  "portfoliosTotalContract": [
+    { "name": "SNB", "value": 2000 },
+    { "name": "NBE", "value": 605 },
+    { "name": "EGP", "value": 450 },
+    { "name": "SFA", "value": 508 }
+  ],
+  "paymentAmount": {
+    "all": [
+      { "name": "", "unpaid": 2008.54, "partialPaid": 3888.54, "paid": 3888.54 }
+    ]
+  },
+  "contractStatus": [
+    { "name": "نشط", "value": 73 },
+    { "name": "مغلق", "value": 27 }
+  ],
+  "paymentsStatus": [
+    { "name": "سداد كلي", "value": 20 },
+    { "name": "لم تسدد", "value": 60 },
+    { "name": "سداد جزئي", "value": 20 }
+  ],
+  "bucketContracts": [
+    { "name": "Current", "value": 200 },
+    { "name": "Grace period", "value": 150 },
+    { "name": "Bucket 1", "value": 400 },
+    { "name": "Bucket 2", "value": 400 },
+    { "name": "Bucket 3", "value": 150 },
+    { "name": "Bucket 4", "value": 102 },
+    { "name": "Bucket 5", "value": 100 },
+    { "name": "Bucket 6", "value": 80 },
+    { "name": "Write off", "value": 100 },
+    { "name": "Closed", "value": 5 }
+  ],
+  "bucketContractsRate": [
+    { "name": "Current", "value": 26.43 },
+    { "name": "Grace period", "value": 6.43 },
+    { "name": "Bucket 1", "value": 18.02 },
+    { "name": "Bucket 2", "value": 12.91 },
+    { "name": "Bucket 3", "value": 8.41 },
+    { "name": "Bucket 4", "value": 5.11 },
+    { "name": "Bucket 5", "value": 2.8 },
+    { "name": "Bucket 6", "value": 0.1 },
+    { "name": "Write off", "value": 6.43 },
+    { "name": "Closed", "value": 3.0 }
+  ]
+}

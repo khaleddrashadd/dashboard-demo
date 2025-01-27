@@ -3,41 +3,41 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Cairo";
+  font-family: 'Cairo';
   font-style: normal;
   font-weight: 300;
-  src: url("@/assets/fonts/Cairo-Light.woff2") format("woff2"),
-    url("@/assets/fonts/Cairo-Light.woff") format("woff");
+  src: url('@/assets/fonts/Cairo-Light.woff2') format('woff2'),
+    url('@/assets/fonts/Cairo-Light.woff') format('woff');
 }
 
 @font-face {
-  font-family: "Cairo";
+  font-family: 'Cairo';
   font-style: normal;
   font-weight: 400;
-  src: url("@/assets/fonts/Cairo-Regular.woff2") format("woff2"),
-    url("@/assets/fonts/Cairo-Regular.woff") format("woff");
+  src: url('@/assets/fonts/Cairo-Regular.woff2') format('woff2'),
+    url('@/assets/fonts/Cairo-Regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: "Cairo";
+  font-family: 'Cairo';
   font-style: normal;
   font-weight: 600;
-  src: url("@/assets/fonts/Cairo-SemiBold.woff2") format("woff2"),
-    url("@/assets/fonts/Cairo-SemiBold.woff") format("woff");
+  src: url('@/assets/fonts/Cairo-SemiBold.woff2') format('woff2'),
+    url('@/assets/fonts/Cairo-SemiBold.woff') format('woff');
 }
 @font-face {
-  font-family: "Cairo";
+  font-family: 'Cairo';
   font-style: normal;
   font-weight: 700;
-  src: url("@/assets/fonts/Cairo-Bold.woff2") format("woff2"),
-    url("@/assets/fonts/Cairo-Bold.woff") format("woff");
+  src: url('@/assets/fonts/Cairo-Bold.woff2') format('woff2'),
+    url('@/assets/fonts/Cairo-Bold.woff') format('woff');
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Cairo", sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 body {
@@ -45,7 +45,7 @@ body {
 }
 body[data-scroll-locked].body {
   margin-right: 0 !important;
-  overflow-y: scroll !important;
+  overflow: auto !important;
 }
 
 .recharts-responsive-container *:focus {

@@ -16,22 +16,54 @@ import PaymentStatus from '@/features/portfolioPerformance/components/PaymentSta
 import BucketRate from '@/features/portfolioPerformance/components/BucketRate';
 import BucketsTotalContracts from '@/features/portfolioPerformance/components/BucketsTotalContracts';
 import BucketsTotalContractsChart from '@/features/portfolioPerformance/components/Buckets/BucketsTotalContractsChart';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import {
+  getSelectedMonth,
+  getSelectedYear,
+} from '@/features/portfolioPerformance/store/filterSlice';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 export default function Home() {
+  const [selectedPortfolio, setSelectedPortfolio] = useState('');
+  const selectedYear = useSelector(getSelectedYear);
+  const selectedMonth = useSelector(getSelectedMonth);
+
+  const getData = async () => {
+    const response = await axios.get(
+      `http://localhost:4000/api/data?year=${selectedYear
+        .toString()
+        .trim()}&month=${selectedMonth
+        .toString()
+        .trim()}&portfolio=${selectedPortfolio}`
+    );
+    return response.data.data;
+  };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['home-charts', selectedYear, selectedMonth, selectedPortfolio],
+    queryFn: getData,
+    placeholderData: keepPreviousData,
+  });
+  console.log(data);
   return (
     <div className="p-4 space-y-4">
-      <div className="flex items-center justify-between">
-        <AppHeading title="لوحة متابعة آداء المحافظ" />
+      <div className="flex items-center justify-between flex-col gap-y-4 md:flex-row">
+        <AppHeading
+          title="لوحة متابعة آداء المحافظ"
+          className=" py-6 px-4 bg-white rounded-md shadow-md"
+        />
         <PortfolioFilter />
       </div>
       <div>
         <div className="grid grid-cols-10 gap-y-3 lg:gap-y-0 lg:gap-x-3">
           <div className="col-span-10 lg:col-span-6">
-            <CollectionPerformance>
-              <CollectionPerformanceChart />
+            <CollectionPerformance isLoading={isLoading}>
+              <CollectionPerformanceChart data={data?.collectionPerformance} />
             </CollectionPerformance>
           </div>
           <div className="col-span-10 lg:col-span-4 row-span-2 max-lg:order-2">
-            <TotalValues>
+            <TotalValues isLoading={isLoading}>
               <TotalValuesItems />
             </TotalValues>
           </div>
@@ -39,32 +71,36 @@ export default function Home() {
         <div className="grid grid-cols-6 mt-4 gap-3">
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <PortfoliosTotalContracts>
-              <PortfoliosTotalContractsChart />
+              <PortfoliosTotalContractsChart
+                data={data?.portfoliosTotalContracts}
+                setSelectedPortfolio={setSelectedPortfolio}
+                selectedPortfolio={selectedPortfolio}
+              />
             </PortfoliosTotalContracts>
           </div>
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <PaymentAmount>
-              <PaymentAmountChart />
+              <PaymentAmountChart data={data?.paymentsAmount} />
             </PaymentAmount>
           </div>
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <BucketsTotalContracts>
-              <BucketsTotalContractsChart />
+              <BucketsTotalContractsChart data={data?.bucketContracts} />
             </BucketsTotalContracts>
           </div>
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <ContractStatus>
-              <ContractStatusChart />
+              <ContractStatusChart data={data?.contractStatus} />
             </ContractStatus>
           </div>
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <PaymentStatus>
-              <PaymentStatusChart />
+              <PaymentStatusChart data={data?.paymentsStatus} />
             </PaymentStatus>
           </div>
           <div className="col-span-6 md:col-span-3 2xl:col-span-2">
             <BucketRate>
-              <BucketRateChart />
+              <BucketRateChart data={data?.bucketContractsRate} />
             </BucketRate>
           </div>
         </div>

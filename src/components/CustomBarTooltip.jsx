@@ -4,7 +4,7 @@ const CustomBarTooltip = ({ active, payload }) => {
       <div className="bg-white p-2 border rounded shadow-lg">
         <p
           className="text-sm"
-          style={{ color: payload[0].color }}>
+          style={{ color: payload[0].payload.color }}>
           {payload[0].name}: {payload[0].value}
         </p>
       </div>

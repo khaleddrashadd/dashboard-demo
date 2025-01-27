@@ -49,6 +49,7 @@ export default {
           300: "#55D236",
           400: "#00A98F",
           500: "#1B8354",
+          600: "#209842",
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },

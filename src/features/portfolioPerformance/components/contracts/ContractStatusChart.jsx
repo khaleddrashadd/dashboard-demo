@@ -1,13 +1,22 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-import CustomPieTooltip from './CustomPieTooltip';
 import CustomLabel from './CustomLabel';
+import { useMemo } from 'react';
+import CustomPieTooltip from '@/components/CustomPieTooltip';
 
-const ContractStatusChart = () => {
-  const paymentStatusData = [
-    { name: 'نشط', value: 73, color: '#0095FF' },
-    { name: 'مغلق', value: 27, color: '#6FD195' },
-  ];
+const COLORS = {
+  1: '#0095FF',
+  2: '#6FD195',
+};
 
+const ContractStatusChart = ({ data }) => {
+  const modifiedData = useMemo(() => {
+    return data?.map((item, idx) => {
+      return {
+        ...item,
+        color: COLORS[idx + 1],
+      };
+    });
+  }, [data]);
   return (
     <div className="w-full ">
       <div className="h-80">
@@ -16,21 +25,20 @@ const ContractStatusChart = () => {
           height="100%">
           <PieChart>
             <Pie
-              data={paymentStatusData}
+              data={modifiedData}
               cx="50%"
               cy="50%"
               outerRadius={120}
               labelLine={false}
               label={<CustomLabel />}
               dataKey="value">
-              {paymentStatusData.map((entry, index) => (
+              {modifiedData?.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={entry.color}
+                  fill={COLORS[entry.id]}
                   style={{
                     transformOrigin: 'center',
                     transition: 'all 0.3s ease',
-                    cursor: 'pointer',
                   }}
                 />
               ))}
@@ -40,7 +48,7 @@ const ContractStatusChart = () => {
         </ResponsiveContainer>
       </div>
       <div className="flex items-center gap-4 justify-center mb-3">
-        {paymentStatusData.map((entry, index) => (
+        {modifiedData?.map((entry, index) => (
           <div
             key={`legend-${index}`}
             className="flex items-center cursor-pointer">
