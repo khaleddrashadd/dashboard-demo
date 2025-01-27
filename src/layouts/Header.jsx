@@ -1,10 +1,15 @@
+import { useState } from "react";
+
 import ChevronIcon from "../assets/icons/chevron.svg?react";
 import NotificationIcon from "../assets/icons/notification.svg?react";
 import CalendarIcon from "../assets/icons/calendar.svg?react";
 import LogoutIcon from "../assets/icons/logout.svg?react";
 import redfLogo from "../assets/images/redf-logo.jpeg";
+import LogoutModal from "@/features/login/LogoutModal";
 
 const Header = () => {
+  const [isLogoutModalVisible, setIsLogoutModalVisible] = useState(false);
+
   return (
     <header className="px-6 py-3 shadow-sm flex items-center w-full top-0 justify-end bg-white gap-x-3 z-10">
       <section className="flex items-center gap-x-4 bg-secondary-100 p-1 rounded-full">
@@ -39,11 +44,18 @@ const Header = () => {
           </button>
         </li>
         <li>
-          <button className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center">
+          <button
+            className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center"
+            onClick={() => setIsLogoutModalVisible(true)}
+          >
             <LogoutIcon className="fill-white w-5 h-5" />
           </button>
         </li>
       </ul>
+      <LogoutModal
+        isVisible={isLogoutModalVisible}
+        onClose={() => setIsLogoutModalVisible(false)}
+      />
     </header>
   );
 };

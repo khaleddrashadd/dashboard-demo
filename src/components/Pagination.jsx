@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const Pagination = ({
   totalItems = 0,
@@ -22,6 +22,15 @@ const Pagination = ({
   const handlePageChange = (page) => {
     setCurrentPage(page);
     onPageChange(page);
+  };
+
+  const pageSizeOptions = () => {
+    const totalSize = totalItems / 10;
+    const sizeOptions = [];
+    for (let i = 0; i <= totalSize; i++) {
+      if (i > 0 && i <= 5) sizeOptions.push(i * 10);
+    }
+    return sizeOptions;
   };
 
   const renderPageNumbers = () => {
@@ -41,15 +50,14 @@ const Pagination = ({
           variant="outline"
           key={1}
           onClick={() => handlePageChange(1)}
-          className="px-3 py-2 rounded ">
+          className="px-3 py-2 rounded "
+        >
           1
         </Button>
       );
       if (startPage > 2) {
         pages.push(
-          <span
-            key="start-ellipsis"
-            className="px-2 py-2">
+          <span key="start-ellipsis" className="px-2 py-2">
             <MoreHorizontal className="w-4 h-4 inline-block" />
           </span>
         );
@@ -64,8 +72,9 @@ const Pagination = ({
           key={i}
           onClick={() => handlePageChange(i)}
           className={`px-3 py-2 rounded ${
-            currentPage === i ? 'border-primary-500 text-primary-500' : ''
-          }`}>
+            currentPage === i ? "border-primary-500 text-primary-500" : ""
+          }`}
+        >
           {i}
         </Button>
       );
@@ -75,9 +84,7 @@ const Pagination = ({
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) {
         pages.push(
-          <span
-            key="end-ellipsis"
-            className="px-2 py-2">
+          <span key="end-ellipsis" className="px-2 py-2">
             <MoreHorizontal className="w-4 h-4 inline-block" />
           </span>
         );
@@ -87,7 +94,8 @@ const Pagination = ({
           variant="outline"
           key={totalPages}
           onClick={() => handlePageChange(totalPages)}
-          className="px-3 py-2 rounded">
+          className="px-3 py-2 rounded"
+        >
           {totalPages}
         </Button>
       );
@@ -103,16 +111,16 @@ const Pagination = ({
 
   return (
     <div className="flex items-center justify-between px-2 py-4">
-      <Select
-        value={pageSize.toString()}
-        onValueChange={handleValueChange}>
+      <Select value={pageSize.toString()} onValueChange={handleValueChange}>
         <SelectTrigger className="w-24">
           <SelectValue>{pageSize}/page</SelectValue>
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="10">10/page</SelectItem>
-          {totalItems > 10 && <SelectItem value="20">20/page</SelectItem>}
-          {totalItems > 20 && <SelectItem value="50">50/page</SelectItem>}
+          {pageSizeOptions().map((option, index) => (
+            <SelectItem key={index} value={option}>
+              {option}/page
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
@@ -121,7 +129,8 @@ const Pagination = ({
           variant="outline"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="p-2 rounded  rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed">
+          className="p-2 rounded  rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <ChevronLeft className="w-4 h-4" />
         </Button>
 
@@ -131,7 +140,8 @@ const Pagination = ({
           variant="outline"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="p-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed">
+          className="p-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
         </Button>
       </div>

@@ -4,6 +4,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        custom: "0px 0px 10px 0px rgba(0, 0, 0, 0.16)",
+        "custom-lg": "0px 0px 20px 0px rgba(0, 0, 0, 0.2)",
+        "custom-xl": "0px 0px 30px 0px rgba(0, 0, 0, 0.25)",
+      },
       zIndex: {
         99: "99",
         999: "999",
@@ -12,6 +17,7 @@ export default {
       fontSize: {
         "2xs": "0.625rem",
         "3xs": "0.5rem",
+        md: ["0.875rem", { lineHeight: "1.64rem" }],
       },
       screens: {
         xs: "480px",
@@ -72,6 +78,7 @@ export default {
           500: "#9DA4AE",
           600: "#959595",
           700: "#7F7F7F",
+          750: "#7E7E7E",
           800: "#767676",
           850: "#313131",
           900: "#565656",
