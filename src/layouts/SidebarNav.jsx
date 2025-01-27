@@ -54,6 +54,11 @@ const SidebarNav = () => {
               { title: 'الدفعات', to: '/payments' },
               { title: 'الحسابات', to: '/accounts' },
               { title: 'التحصيل', to: '/collections' },
+              { title: 'الإحصائيات', to: '/reports/statistics' },
+              { title: 'الدفعات', to: '/reports/installments' },
+              { title: 'العقود', to: '/reports/contracts' },
+              { title: 'الحسابات', to: '/accounts' },
+              { title: 'التحصيل', to: '/collections' },
             ]}
             handleOpenSidebar={handleOpenSidebar}
           />

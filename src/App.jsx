@@ -4,9 +4,6 @@ import Home from './pages/Home';
 import Contracts from './pages/Contracts';
 import Login from './pages/Login';
 import Statistics from './pages/Statistics';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Test from './pages/Test';
 
 function App() {
   const queryClient = new QueryClient();
@@ -26,6 +23,10 @@ function App() {
             <Route
               path="/reports/statistics"
               element={<Statistics />}
+            />
+            <Route
+              path="/reports/installments"
+              element={<Installments />}
             />
           </Route>
         </Route>
