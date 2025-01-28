@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setPhoneNumber, setUsername } from '../store/loginSlice';
 import { loginService } from '../services/loginService';
 import loginSchema from '../schema/loginSchema';
+import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
 
 const LoginForm = ({ setStep }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,27 +43,20 @@ const LoginForm = ({ setStep }) => {
     },
   });
   const onSubmit = (data) => mutate(data);
+  const errorMsg = reqError?.response?.data?.message || FALLBACK_ERR_MSG;
 
   return (
     <div className="flex items-center justify-center flex-col px-3">
       <div className="mb-6 xs:w-full h-[66px] w-full">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-full"
-        />
+        <img src={logo} alt="logo" className="h-full" />
       </div>
       <div className="text-center flex flex-col w-full">
         <h2 className="mb-6 font-semibold text-ivory-950 text-xl">
           تسجيل الدخول إلى حسابك
         </h2>
-        <form
-          className="w-full"
-          onSubmit={handleSubmit(onSubmit)}>
+        <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6 flex flex-col gap-2 items-start">
-            <Label
-              htmlFor="username"
-              className="block text-sm text-ivory-900">
+            <Label htmlFor="username" className="block text-sm text-ivory-900">
               اسم المستخدم
             </Label>
             <Input
@@ -103,17 +97,12 @@ const LoginForm = ({ setStep }) => {
                 variant="ghost"
                 size="sm"
                 className="absolute rtl:left-0 ltr:right-0 top-0 h-full px-3 py-2 hover:bg-transparent peer-placeholder-shown:cursor-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:opacity-60"
-                onClick={() => setShowPassword((prev) => !prev)}>
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
                 {showPassword ? (
-                  <EyeIcon
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  />
+                  <EyeIcon className="h-4 w-4" aria-hidden="true" />
                 ) : (
-                  <EyeOffIcon
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  />
+                  <EyeOffIcon className="h-4 w-4" aria-hidden="true" />
                 )}
               </Button>
             </div>
@@ -129,15 +118,11 @@ const LoginForm = ({ setStep }) => {
               <div className=" border-2 border-danger-200 rounded-full">
                 <X className="text-danger-200 w-6 h-6 font-bold" />
               </div>
-              <p className="text-sm font-semibold text-ivory-950">
-                {reqError.message}
-              </p>
+              <p className="text-sm font-semibold text-ivory-950">{errorMsg}</p>
             </div>
           )}
 
-          <Button
-            className="w-full py-4 h-auto"
-            disabled={isPending}>
+          <Button className="w-full py-4 h-auto" disabled={isPending}>
             تسجيل الدخول
           </Button>
         </form>

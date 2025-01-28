@@ -20,6 +20,7 @@ import { changePasswordService } from '../services/changePasswordService';
 import passwordSchema from '../schema/passwordSchema';
 import { consentTermsService } from '../services/consentTermsService';
 import { STEPS } from '@/constants/steps';
+import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
 
 const ChangePasswordForm = ({ setStep }) => {
   const [hasChangedPassword, setHasChangedPassword] = useState(false);
@@ -62,12 +63,12 @@ const ChangePasswordForm = ({ setStep }) => {
 
   const { mutate: handleConfirmModal } = useMutation({
     mutationFn: onConfirm,
-    onSuccess({ data }) {
-      localStorage.setItem('token', data.data.token);
+    onSuccess() {
       dispatch(closeModal());
       setStep(STEPS.LOGIN);
     },
   });
+  const errorMsg = reqError?.response?.data?.message || FALLBACK_ERR_MSG;
 
   return (
     <div className="flex flex-col items-center justify-center px-3">
@@ -149,14 +150,11 @@ const ChangePasswordForm = ({ setStep }) => {
             {errors.confirmPassword?.message}
           </p>
           {reqError && (
-            <span className="text-danger-200 text-sm">{reqError?.message}</span>
+            <span className="text-danger-200 text-sm">{errorMsg}</span>
           )}
         </div>
 
-        <Button
-          className="h-auto py-4 w-full lg:w-[450px]"
-          disabled={isPending}
-        >
+        <Button className="h-auto py-4 w-full" disabled={isPending}>
           تأكيد كلمة المرور
         </Button>
       </form>

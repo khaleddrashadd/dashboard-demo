@@ -23,6 +23,7 @@ import { useState } from 'react';
 import OTP from './OTP';
 import { consentTermsService } from '../services/consentTermsService';
 import { useNavigate } from 'react-router';
+import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
 
 const OTPForm = ({ setStep }) => {
   const phoneNumber = useSelector(getPhoneNumber);
@@ -84,6 +85,7 @@ const OTPForm = ({ setStep }) => {
       });
     },
   });
+  const errorMsg = reqErr?.response?.data?.message || FALLBACK_ERR_MSG;
 
   return (
     <div className="flex items-center justify-center flex-col px-3">
@@ -118,7 +120,7 @@ const OTPForm = ({ setStep }) => {
               render={({ field }) => <OTP field={field} errors={errors} />}
             />
             {reqErr && (
-              <span className="text-danger-200 text-sm">{reqErr.message}</span>
+              <span className="text-danger-200 text-sm">{errorMsg}</span>
             )}
             {errors.otp && (
               <span className="text-xs text-danger-200">
