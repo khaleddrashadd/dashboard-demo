@@ -70,6 +70,7 @@ export default {
         danger: {
           50: '#F8E2E2',
           100: '#FFE0E0',
+          150: '#FBF4F4',
           200: '#D60000',
           300: '#C40C0C',
         },

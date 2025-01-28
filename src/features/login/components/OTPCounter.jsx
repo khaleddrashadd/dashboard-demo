@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const INTITIAL_TIME = 300; // 5 minutes
-const OTPCounter = () => {
+const OTPCounter = ({ onResend }) => {
   const [time, setTime] = useState(INTITIAL_TIME);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,6 +26,7 @@ const OTPCounter = () => {
     <div className="text-sm flex items-center gap-1">
       <span className="text-ivory-950">ألم تصلك رسالة؟</span>
       <span
+        onClick={onResend}
         className={`"text-ivory-900" ${
           !time ? 'cursor-pointer underline' : ' cursor-not-allowed'
         }`}>

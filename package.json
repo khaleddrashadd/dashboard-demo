@@ -1,11 +1,13 @@
 {
-  "name": "try_dashboard",
+  "name": "legal_owner_dashboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000 --host",
-    "build": "vite build",
+    "dev": "env-cmd -e development vite --port 3000 --host",
+    "build:dev": "env-cmd -e development vite build",
+    "build:stage": "env-cmd -e stage vite build",
+    "build:prod": "env-cmd -e production vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -26,6 +28,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
+    "env-cmd": "^10.1.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.474.0",
     "react": "^19.0.0",
@@ -37,7 +40,6 @@
     "recharts": "^2.15.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "usehooks-ts": "^3.1.0",
     "vite-plugin-svgr": "^4.3.0",
     "yup": "^1.6.1"
   },

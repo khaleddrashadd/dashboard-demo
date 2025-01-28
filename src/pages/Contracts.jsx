@@ -42,7 +42,6 @@ const Contracts = () => {
     queryFn: getData,
     placeholderData: keepPreviousData,
   });
-  console.log(data);
 
   return (
     <>

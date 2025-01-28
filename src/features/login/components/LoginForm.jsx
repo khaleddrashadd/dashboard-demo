@@ -1,44 +1,48 @@
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { EyeIcon, EyeOffIcon, X } from 'lucide-react';
 import { useState } from 'react';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import logo from '@/assets/images/logo.png';
+import { STEPS } from '@/constants/steps';
+import { useDispatch } from 'react-redux';
+import { setPhoneNumber, setUsername } from '../store/loginSlice';
+import { loginService } from '../services/loginService';
+import loginSchema from '../schema/loginSchema';
 
-const LoginForm = () => {
+const LoginForm = ({ setStep }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
-  const schema = yup.object().shape({
-    username: yup.string().required('الرجاء ادخال اسم المستخدم'),
-    password: yup.string().required('الرجاء ادخال كلمة المرور'),
-  });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginSchema),
   });
 
   const onLogin = async (data) => {
-    axios.post('http://localhost:4000/api/login', data);
+    return await loginService(data);
   };
 
-  const { mutate, isPending } = useMutation({
+  const {
+    mutate,
+    isPending,
+    error: reqError,
+  } = useMutation({
     mutationFn: onLogin,
-    onSuccess() {},
+    onSuccess({ data }, variables) {
+      dispatch(setUsername(variables.username));
+      dispatch(setPhoneNumber(data.data));
+      setStep(STEPS.OTP);
+    },
   });
+  const onSubmit = (data) => mutate(data);
 
-  const onSubmit = (data) => {
-    console.log('Form Data:', data);
-    mutate(data);
-    // Handle form submission
-  };
   return (
     <div className="flex items-center justify-center flex-col px-3">
       <div className="mb-6 xs:w-full h-[66px] w-full">
@@ -119,6 +123,18 @@ const LoginForm = () => {
               </p>
             )}
           </div>
+
+          {reqError && (
+            <div className="mb-8 p-4 flex items-center gap-2 bg-danger-150 border border-danger-100 rounded-sm ">
+              <div className=" border-2 border-danger-200 rounded-full">
+                <X className="text-danger-200 w-6 h-6 font-bold" />
+              </div>
+              <p className="text-sm font-semibold text-ivory-950">
+                {reqError.message}
+              </p>
+            </div>
+          )}
+
           <Button
             className="w-full py-4 h-auto"
             disabled={isPending}>
