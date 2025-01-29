@@ -15,14 +15,17 @@ const SidebarNavExpandableItem = ({
   };
   return (
     <li
+      tabIndex={1}
       className={`rounded-2xl duration-300 relative ${
         !isSidebarOpen ? 'justify-center group' : ''
-      } ${isListExpanded && isSidebarOpen ? 'bg-primary-600 p-2' : ''}`}>
+      } ${isListExpanded && isSidebarOpen ? 'bg-primary-600 p-2' : ''}`}
+    >
       <div
         onClick={handleExpandList}
-        className={`flex group items-center px-2 py-2 cursor-pointer duration-300 hover:bg-secondary-400 hover:text-white rounded-2xl  ${
+        className={`flex group-focus:bg-secondary-400 group-focus:text-white items-center px-2 py-2 cursor-pointer duration-300 rounded-2xl  ${
           !isSidebarOpen ? 'w-max' : ''
-        }`}>
+        }`}
+      >
         <div className="flex gap-3 items-center w-full h-full rounded-2xl">
           <Icon className="fill-white w-6 h-6" />
           {isSidebarOpen && (
@@ -41,21 +44,23 @@ const SidebarNavExpandableItem = ({
         )}
       </div>
       {(isListExpanded || !isSidebarOpen) && (
-        <ul
+        <div
           className={`flex-col w-max ${
             !isSidebarOpen
-              ? 'hidden group-hover:flex absolute rtl:right-full ltr:left-full bg-primary-600 rounded-2xl top-0 before:absolute before:border-[10px] rtl:before:border-l-primary-600 ltr:before:border-l-transparent ltr:before:border-r-primary-600 rtl:before:border-r-transparent before:border-r-transparent before:border-t-transparent before:border-b-transparent rtl:before:left-[calc(100%-3px)] ltr:before:right-[calc(100%-3px)] before:top-4 before:rounded-lg'
+              ? 'hidden group-focus:flex absolute rtl:right-full ltr:left-full bg-primary-600 rounded-2xl top-0 before:absolute before:border-[10px] rtl:before:border-l-primary-600 ltr:before:border-l-transparent ltr:before:border-r-primary-600 rtl:before:border-r-transparent before:border-r-transparent before:border-t-transparent before:border-b-transparent rtl:before:left-[calc(100%-3px)] ltr:before:right-[calc(100%-3px)] before:top-4 before:rounded-lg'
               : 'flex'
-          } ${routes.length ? 'p-2' : ''}`}>
+          } ${routes.length ? 'p-2' : ''}`}
+        >
           {routes.map((route) => (
             <NavLink
               key={route?.to}
               to={route?.to}
-              className="block px-6 py-[10px] duration-300 hover:text-secondary-200 text-xs select-none">
+              className=" px-6 py-[10px] duration-300 hover:text-secondary-200 text-xs select-none"
+            >
               {route?.title}
             </NavLink>
           ))}
-        </ul>
+        </div>
       )}
     </li>
   );
