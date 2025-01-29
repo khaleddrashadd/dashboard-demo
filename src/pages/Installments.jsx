@@ -4,64 +4,64 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import InputWrapper from "@/components/InputWrapper";
-import { RotateCcw } from "lucide-react";
-import Table from "@/components/testComponent/Table";
-import { default as Card } from "@/features/installments/Card";
-import CardSkeleton from "@/features/installments/CardSkeleton";
+} from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import InputWrapper from '@/components/InputWrapper';
+import { RotateCcw } from 'lucide-react';
+import Table from '@/components/testComponent/Table';
+import { default as Card } from '@/features/installments/Card';
+import CardSkeleton from '@/features/installments/CardSkeleton';
 
-const Statistics = () => {
+const Installments = () => {
   const cardsData = [
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "primary-500",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'primary-500',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "secondary-400",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'secondary-400',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "danger-200",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'danger-200',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "extended-700",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'extended-700',
     },
   ];
 
   const portfolios = [
     {
       id: 1,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 2,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 3,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 4,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
   ];
 
   const handlePortfolioChange = (selectedId) => {
-    console.log("Selected Portfolio ID:", selectedId);
+    console.log('Selected Portfolio ID:', selectedId);
   };
 
   return (
@@ -73,7 +73,7 @@ const Statistics = () => {
           {/*  */}
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Select onValueChange={handlePortfolioChange}>
                   <SelectTrigger className="w-[180px] bg-white">
                     <SelectValue placeholder="Theme" />
@@ -88,7 +88,7 @@ const Statistics = () => {
                 </Select>
               </InputWrapper>
 
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Select onValueChange={handlePortfolioChange}>
                   <SelectTrigger className="w-[180px] bg-white">
                     <SelectValue placeholder="Theme" />
@@ -103,7 +103,7 @@ const Statistics = () => {
                 </Select>
               </InputWrapper>
 
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Select onValueChange={handlePortfolioChange}>
                   <SelectTrigger className="w-[180px] bg-white">
                     <SelectValue placeholder="Theme" />
@@ -119,14 +119,14 @@ const Statistics = () => {
               </InputWrapper>
             </div>
             <div className="flex flex-col gap-4">
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Input type="text" id="email" placeholder="Email" />
               </InputWrapper>
 
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Input type="email" id="email" placeholder="Email" />
               </InputWrapper>
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Input type="email" id="email" placeholder="Email" />
               </InputWrapper>
             </div>
@@ -156,4 +156,4 @@ const Statistics = () => {
   );
 };
 
-export default Statistics;
+export default Installments;

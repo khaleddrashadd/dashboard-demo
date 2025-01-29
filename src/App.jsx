@@ -7,8 +7,8 @@ import Statistics from './pages/Statistics';
 import Installments from './pages/Installments';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import ProtectRoutes from './features/login/components/ProtectRoutes';
 import { ToastContainer } from 'react-toastify';
+import ProtectRoutes from './components/ProtectRoutes';
 
 function App() {
   const queryClient = new QueryClient();

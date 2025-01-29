@@ -16,7 +16,6 @@ import PaymentStatus from '@/features/portfolioPerformance/components/PaymentSta
 import BucketRate from '@/features/portfolioPerformance/components/BucketRate';
 import BucketsTotalContracts from '@/features/portfolioPerformance/components/BucketsTotalContracts';
 import BucketsTotalContractsChart from '@/features/portfolioPerformance/components/Buckets/BucketsTotalContractsChart';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import {
   getSelectedMonth,
@@ -24,25 +23,20 @@ import {
 } from '@/features/portfolioPerformance/store/filterSlice';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { getData } from '@/features/portfolioPerformance/services/getPortfolioData';
 export default function Home() {
   const [selectedPortfolio, setSelectedPortfolio] = useState('');
   const selectedYear = useSelector(getSelectedYear);
   const selectedMonth = useSelector(getSelectedMonth);
 
-  const getData = async () => {
-    const response = await axios.get(
-      `http://localhost:4000/api/data?year=${selectedYear
-        .toString()
-        .trim()}&month=${selectedMonth
-        .toString()
-        .trim()}&portfolio=${selectedPortfolio}`
-    );
-    return response.data.data;
-  };
-
   const { data, error, isLoading } = useQuery({
     queryKey: ['home-charts', selectedYear, selectedMonth, selectedPortfolio],
-    queryFn: getData,
+    queryFn: () =>
+      getData({
+        selectedYear,
+        selectedMonth,
+        selectedPortfolio,
+      }),
     placeholderData: keepPreviousData,
   });
   console.log(data);
