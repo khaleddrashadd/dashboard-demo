@@ -5,146 +5,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import Card from '@/features/statistics/Card';
-import CardSkeleton from '@/features/statistics/CardSkeleton';
+import Card from '@/features/statistics/components/Card';
+import CardSkeleton from '@/features/statistics/components/CardSkeleton';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useState } from 'react';
+import { initialCardsData } from '@/constants/statistics';
+import { Loader2 } from 'lucide-react';
+import {
+  getStatsService,
+  getLegalOwnersService,
+} from '@/features/statistics/services/services';
 
 const Statistics = () => {
-  const initialCardsData = [
-    {
-      activeContracts: {
-        title: 'عدد العقود النشطة',
-        content: null,
-        icon: 'document_checked',
-      },
-    },
-    {
-      closeAccountacts: {
-        title: 'عدد العقود المقفلة',
-        content: null,
-        icon: 'notebook',
-      },
-    },
-
-    {
-      totalOutstandingPrincipal: {
-        title: 'قيمة المحفظة',
-        content: null,
-        icon: 'wallet',
-      },
-    },
-
-    {
-      remainingOutstandingPrincipal: {
-        title: 'قيمة الأصل المتبقي',
-        content: null,
-        icon: 'coins',
-      },
-    },
-
-    {
-      totalAmountPaid: {
-        title: 'المبالغ المسددة',
-        content: null,
-        icon: 'badge_checked',
-      },
-    },
-
-    {
-      delinquentAmount: {
-        title: 'المبالغ المتأخرة',
-        content: null,
-        icon: 'alarm',
-      },
-    },
-
-    {
-      advanceAmount: {
-        title: 'المبالغ المدفوعة مقدماً',
-        content: null,
-        icon: 'zap',
-      },
-    },
-
-    {
-      contractUpdateErrors: {
-        title: 'خطأ في تحديث حالة العقود',
-        content: null,
-        icon: 'document_invalid',
-      },
-    },
-
-    {
-      activeTickets: {
-        title: 'التذاكر النشطة',
-        content: null,
-        icon: 'badge',
-      },
-    },
-
-    {
-      paritiallyAmount: {
-        title: 'المبلغ المدفوع جزئياً',
-        content: null,
-        icon: 'multi_tool',
-      },
-    },
-
-    {
-      paidRisk: {
-        title: 'الفواتير المدفوعة',
-        content: null,
-        icon: 'document',
-      },
-    },
-
-    {
-      incommpCalls: {
-        title: 'مكالمات واردة',
-        content: null,
-        icon: 'received_call',
-      },
-    },
-    {
-      outgoingCalls: {
-        title: 'مكالمات صادرة',
-        content: null,
-        icon: 'sent_call',
-      },
-    },
-  ];
-
-  const portfolios = [
-    {
-      id: null,
-      name: 'الكل',
-    },
-    {
-      id: 1,
-      name: 'LegalOwner1',
-    },
-    {
-      id: 2,
-      name: 'LegalOwner2',
-    },
-    {
-      id: 3,
-      name: 'LegalOwner3',
-    },
-    {
-      id: 4,
-      name: 'LegalOwner4',
-    },
-  ];
-
   const [legalOwnerId, setLegalOwnerId] = useState(null);
 
-  const getData = async () => {
-    const response = await axios.get(
-      `https://simah-uat.nfsc.sa:8093/api/Statistics/get-statics-data?legalOwnerID${legalOwnerId}`
-    );
+  const getLegalOwners = async () => {
+    const response = await getLegalOwnersService();
+    const apiData = response.data.data;
+
+    return apiData;
+  };
+
+  const getStatsData = async () => {
+    const response = await getStatsService(legalOwnerId);
     const apiData = response.data.data;
 
     const updatedCardsData = initialCardsData.map((card) => {
@@ -163,11 +46,20 @@ const Statistics = () => {
     return updatedCardsData;
   };
 
-  const { data, isLoading } = useQuery({
+  const { data: statsData, isLoading: statsLoading } = useQuery({
     queryKey: ['contracts-statistics', legalOwnerId], // Include legalOwnerId in queryKey
-    queryFn: () => getData(legalOwnerId), // Pass legalOwnerId to getData
+    queryFn: () => getStatsData(legalOwnerId), // Pass legalOwnerId to getData
     placeholderData: keepPreviousData,
   });
+
+  const { data: legalOwnerData, isLoading: legalOwnerLoading } = useQuery({
+    queryKey: ['legal-owners'], // Include legalOwnerId in queryKey
+    queryFn: () => getLegalOwners(), // Pass legalOwnerId to getData
+    placeholderData: keepPreviousData,
+  });
+
+  console.log(legalOwnerData);
+  console.log(statsData);
 
   const handlePortfolioChange = (selectedId) => {
     console.log('Selected Portfolio ID:', selectedId);
@@ -186,18 +78,34 @@ const Statistics = () => {
               <SelectValue placeholder="الكل" />
             </SelectTrigger>
             <SelectContent>
-              {portfolios.map((item) => (
-                <SelectItem value={item.id} key={item.id}>
-                  {item.name}
-                </SelectItem>
-              ))}
+              {legalOwnerLoading ? ( // Show spinner if data is loading
+                <div className="flex justify-center items-center p-2">
+                  <Loader2 className="h-4 w-4 animate-spin" /> {/* Spinner */}
+                </div>
+              ) : (
+                <>
+                  <SelectItem value={null} key="select-all">
+                    الكل
+                  </SelectItem>
+                  {legalOwnerData?.length > 0
+                    ? legalOwnerData.map((item) => (
+                        <SelectItem
+                          value={item.portfolioId}
+                          key={item.portfolioId}
+                        >
+                          {item.legalOwner}
+                        </SelectItem>
+                      ))
+                    : null}
+                </>
+              )}
             </SelectContent>
           </Select>
         </div>
       </div>
       {/*  */}
       <div className="grid md:grid-cols-[repeat(2,1fr)] grid-cols-1 gap-4">
-        {!isLoading ? <Card cardsData={data} /> : <CardSkeleton />}
+        {!statsLoading ? <Card cardsData={statsData} /> : <CardSkeleton />}
       </div>
     </div>
   );
