@@ -7,7 +7,6 @@ import Statistics from './pages/Statistics';
 import Installments from './pages/Installments';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Test from './pages/Test';
 
 function App() {
   const queryClient = new QueryClient();
@@ -37,10 +36,6 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
-        />
-        <Route
-          path="/test"
-          element={<Test />}
         />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />

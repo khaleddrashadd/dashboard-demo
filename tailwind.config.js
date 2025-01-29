@@ -4,6 +4,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
       boxShadow: {
         custom: "0px 0px 10px 0px rgba(0, 0, 0, 0.16)",
         "custom-lg": "0px 0px 20px 0px rgba(0, 0, 0, 0.2)",
