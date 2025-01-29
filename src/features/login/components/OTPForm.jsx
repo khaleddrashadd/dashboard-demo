@@ -85,6 +85,7 @@ const OTPForm = ({ setStep }) => {
       });
     },
   });
+
   const errorMsg = reqErr?.response?.data?.message || FALLBACK_ERR_MSG;
 
   return (
@@ -127,7 +128,7 @@ const OTPForm = ({ setStep }) => {
                 {errors.otp.message}
               </span>
             )}
-            <OTPCounter onResend={() => console.log('resend')} />
+            <OTPCounter />
           </div>
 
           <Button className="w-full h-auto py-4" disabled={isPending}>

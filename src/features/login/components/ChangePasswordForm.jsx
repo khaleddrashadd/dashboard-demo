@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 import ValidationCheckList from './ValidationCheckList';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { CircleCheck, EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
@@ -21,6 +21,7 @@ import passwordSchema from '../schema/passwordSchema';
 import { consentTermsService } from '../services/consentTermsService';
 import { STEPS } from '@/constants/steps';
 import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
+import { toast } from 'react-toastify';
 
 const ChangePasswordForm = ({ setStep }) => {
   const [hasChangedPassword, setHasChangedPassword] = useState(false);
@@ -61,11 +62,18 @@ const ChangePasswordForm = ({ setStep }) => {
   const isFirstLogin = useSelector(getIsFirstLogin);
   const onConfirm = async () => await consentTermsService(username);
 
+  const handleToast = () =>
+    toast('تم تعيين كلمة المرور بنجاح!', {
+      type: 'success',
+      icon: <CircleCheck className="text-secondary-300" />,
+    });
+
   const { mutate: handleConfirmModal } = useMutation({
     mutationFn: onConfirm,
     onSuccess() {
       dispatch(closeModal());
       setStep(STEPS.LOGIN);
+      handleToast();
     },
   });
   const errorMsg = reqError?.response?.data?.message || FALLBACK_ERR_MSG;

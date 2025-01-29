@@ -8,6 +8,7 @@ import Installments from './pages/Installments';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ProtectRoutes from './features/login/components/ProtectRoutes';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const queryClient = new QueryClient();
@@ -27,6 +28,14 @@ function App() {
         </Route>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        pauseOnHover
+        theme="light"
+        rtl={true}
+      />
     </QueryClientProvider>
   );
 }

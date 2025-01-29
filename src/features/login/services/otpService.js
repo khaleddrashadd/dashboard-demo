@@ -5,3 +5,6 @@ export const otpService = async (data) => {
     otp: data.otp,
   });
 };
+export const resendOtpService = async (username) => {
+  return await axios.get(`/Identity/Resend-OTP/?userName=${username}`);
+};
