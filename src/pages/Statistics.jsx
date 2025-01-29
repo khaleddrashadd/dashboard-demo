@@ -4,68 +4,174 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import Card from "@/features/statistics/Card";
-import CardSkeleton from "@/features/statistics/CardSkeleton";
+} from '@/components/ui/select';
+import Card from '@/features/statistics/Card';
+import CardSkeleton from '@/features/statistics/CardSkeleton';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Statistics = () => {
-  const cardsData = [
-    { title: "Alarm", content: "This is the alarm card.", icon: "alarm" },
+  const initialCardsData = [
     {
-      title: "Badge Checked",
-      content: "This is the badge checked card.",
-      icon: "badge_checked",
-    },
-    { title: "Badge", content: "This is the badge card.", icon: "badge" },
-    { title: "Coins", content: "This is the coins 'card.", icon: "coins" },
-    {
-      title: "Document Checked",
-      content: "This is the document checked card.",
-      icon: "document_checked",
+      activeContracts: {
+        title: 'عدد العقود النشطة',
+        content: null,
+        icon: 'document_checked',
+      },
     },
     {
-      title: "Multi Tool",
-      content: "This is the multi-tool card.",
-      icon: "multi_tool",
+      closeAccountacts: {
+        title: 'عدد العقود المقفلة',
+        content: null,
+        icon: 'notebook',
+      },
+    },
+
+    {
+      totalOutstandingPrincipal: {
+        title: 'قيمة المحفظة',
+        content: null,
+        icon: 'wallet',
+      },
+    },
+
+    {
+      remainingOutstandingPrincipal: {
+        title: 'قيمة الأصل المتبقي',
+        content: null,
+        icon: 'coins',
+      },
+    },
+
+    {
+      totalAmountPaid: {
+        title: 'المبالغ المسددة',
+        content: null,
+        icon: 'badge_checked',
+      },
+    },
+
+    {
+      delinquentAmount: {
+        title: 'المبالغ المتأخرة',
+        content: null,
+        icon: 'alarm',
+      },
+    },
+
+    {
+      advanceAmount: {
+        title: 'المبالغ المدفوعة مقدماً',
+        content: null,
+        icon: 'zap',
+      },
+    },
+
+    {
+      contractUpdateErrors: {
+        title: 'خطأ في تحديث حالة العقود',
+        content: null,
+        icon: 'document_invalid',
+      },
+    },
+
+    {
+      activeTickets: {
+        title: 'التذاكر النشطة',
+        content: null,
+        icon: 'badge',
+      },
+    },
+
+    {
+      paritiallyAmount: {
+        title: 'المبلغ المدفوع جزئياً',
+        content: null,
+        icon: 'multi_tool',
+      },
+    },
+
+    {
+      paidRisk: {
+        title: 'الفواتير المدفوعة',
+        content: null,
+        icon: 'document',
+      },
+    },
+
+    {
+      incommpCalls: {
+        title: 'مكالمات واردة',
+        content: null,
+        icon: 'received_call',
+      },
     },
     {
-      title: "Notebook",
-      content: "This is the notebook card.",
-      icon: "notebook",
-    },
-    {
-      title: "Received Call",
-      content: "This is the received call card.",
-      icon: "received_call",
-    },
-    {
-      title: "Sent Call",
-      content: "This is the sent call card.",
-      icon: "sent_call",
+      outgoingCalls: {
+        title: 'مكالمات صادرة',
+        content: null,
+        icon: 'sent_call',
+      },
     },
   ];
 
   const portfolios = [
     {
+      id: null,
+      name: 'الكل',
+    },
+    {
       id: 1,
-      name: "Portfolio",
+      name: 'LegalOwner1',
     },
     {
       id: 2,
-      name: "Portfolio",
+      name: 'LegalOwner2',
     },
     {
       id: 3,
-      name: "Portfolio",
+      name: 'LegalOwner3',
     },
     {
       id: 4,
-      name: "Portfolio",
+      name: 'LegalOwner4',
     },
   ];
 
+  const [legalOwnerId, setLegalOwnerId] = useState(null);
+
+  const getData = async () => {
+    const response = await axios.get(
+      `https://simah-uat.nfsc.sa:8093/api/Statistics/get-statics-data?legalOwnerID${legalOwnerId}`
+    );
+    const apiData = response.data.data;
+
+    const updatedCardsData = initialCardsData.map((card) => {
+      const key = Object.keys(card)[0]; // Get the key (e.g., 'activeContracts')
+      if (apiData[key]) {
+        return {
+          [key]: {
+            ...card[key],
+            content: apiData[key], // Update content with API data
+          },
+        };
+      }
+      return card; // Return unchanged card if no matching data
+    });
+
+    return updatedCardsData;
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['contracts-statistics', legalOwnerId], // Include legalOwnerId in queryKey
+    queryFn: () => getData(legalOwnerId), // Pass legalOwnerId to getData
+    placeholderData: keepPreviousData,
+  });
+
   const handlePortfolioChange = (selectedId) => {
-    console.log("Selected Portfolio ID:", selectedId);
+    console.log('Selected Portfolio ID:', selectedId);
+    setLegalOwnerId(selectedId);
   };
 
   return (
@@ -77,7 +183,7 @@ const Statistics = () => {
           <h3 className="title text-ivory-900 text-sm">المحفظة</h3>
           <Select onValueChange={handlePortfolioChange}>
             <SelectTrigger className="w-[180px] bg-white">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="الكل" />
             </SelectTrigger>
             <SelectContent>
               {portfolios.map((item) => (
@@ -91,11 +197,7 @@ const Statistics = () => {
       </div>
       {/*  */}
       <div className="grid md:grid-cols-[repeat(2,1fr)] grid-cols-1 gap-4">
-        {cardsData.length > 0 ? (
-          cardsData.map((card, index) => <Card key={index} card={card} />)
-        ) : (
-          <CardSkeleton />
-        )}
+        {!isLoading ? <Card cardsData={data} /> : <CardSkeleton />}
       </div>
     </div>
   );

@@ -52,7 +52,6 @@ const Pagination = ({
           onClick={() => handlePageChange(1)}
           className="px-3 py-2 rounded "
         >
-          className="px-3 py-2 rounded">
           1
         </Button>
       );
@@ -109,65 +108,47 @@ const Pagination = ({
     setPageSize(Number(value));
     onPageSizeChange(Number(value));
   };
-
   return (
     <div className="flex items-center justify-between px-2 py-4">
-      <Select value={pageSize.toString()} onValueChange={handleValueChange}>
-    <div className="flex items-center px-2 py-4 gap-3 justify-end">
-      <div className="flex items-center gap-1">
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="p-2 rounded rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed">
-          <ChevronLeft className="w-4 h-4" />
-        </Button>
+      <div className="flex items-center px-2 py-4 gap-3 justify-end">
+        <div className="flex items-center gap-1">
+          <Button
+            variant="outline"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="p-2 rounded rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
 
-        {renderPageNumbers()}
+          {renderPageNumbers()}
 
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-          <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
-        </Button>
-      </div>
-      <Select
-        value={pageSize.toString()}
-        onValueChange={handleValueChange}>
-        <SelectTrigger className="w-24">
-          <SelectValue>{pageSize}/page</SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          {pageSizeOptions().map((option, index) => (
-            <SelectItem key={index} value={option}>
-              {option}/page
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+          <Button
+            variant="outline"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
+          </Button>
+        </div>
 
-      <div className="flex items-center gap-1">
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="p-2 rounded  rtl:-scale-x-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        <Select
+          value={pageSize.toString()}
+          onValueChange={handleValueChange}
+          className="mr-auto"
         >
-          <ChevronLeft className="w-4 h-4" />
-        </Button>
-
-        {renderPageNumbers()}
-
-        <Button
-          variant="outline"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="p-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <ChevronRight className="w-4 h-4 rtl:-scale-x-100" />
-        </Button>
+          <SelectTrigger className="w-24">
+            <SelectValue>{pageSize}/page</SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {pageSizeOptions().map((option, index) => (
+              <SelectItem key={index} value={option}>
+                {option}/page
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { LogOut } from "lucide-react"; // Import Lucide icon
 import Logout from "@/assets/icons/logout.svg?react";
 
 const LogoutModal = ({ isVisible, onClose }) => {
