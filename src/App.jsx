@@ -7,38 +7,35 @@ import Statistics from './pages/Statistics';
 import Installments from './pages/Installments';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastContainer } from 'react-toastify';
+import ProtectRoutes from './components/ProtectRoutes';
 
 function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
-        <Route element={<MainLayout />}>
-          <Route
-            index
-            element={<Home />}
-          />
-          <Route path="/reports">
-            <Route
-              path="/reports/contracts"
-              element={<Contracts />}
-            />
-            <Route
-              path="/reports/statistics"
-              element={<Statistics />}
-            />
-            <Route
-              path="/reports/installments"
-              element={<Installments />}
-            />
+        <Route element={<ProtectRoutes />}>
+          <Route element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/reports">
+              <Route path="/reports/contracts" element={<Contracts />} />
+              <Route path="/reports/statistics" element={<Statistics />} />
+              <Route path="/reports/installments" element={<Installments />} />
+            </Route>
           </Route>
+          <Route path="/login" element={<Login />} />
         </Route>
-        <Route
-          path="/login"
-          element={<Login />}
-        />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        pauseOnHover
+        theme="light"
+        rtl={true}
+      />
     </QueryClientProvider>
   );
 }

@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import InputWrapper from "@/components/InputWrapper";
-import { RotateCcw } from "lucide-react";
-import InstallmentsTable from "@/features/installments/Table";
+} from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import InputWrapper from '@/components/InputWrapper';
+import { RotateCcw } from 'lucide-react';
+import InstallmentsTable from '@/features/installments/Table';
 
-import { default as Card } from "@/features/installments/Card";
-import CardSkeleton from "@/features/installments/CardSkeleton";
+import { default as Card } from '@/features/installments/Card';
+import CardSkeleton from '@/features/installments/CardSkeleton';
 
 const Installments = () => {
   const initialState = {
-    portfolio: "",
-    year: "",
-    month: "",
-    sadadNumber: "",
-    beneficiaryName: "",
-    contractNumber: "",
+    portfolio: '',
+    year: '',
+    month: '',
+    sadadNumber: '',
+    beneficiaryName: '',
+    contractNumber: '',
   };
 
   const [formState, setFormState] = useState({
@@ -35,68 +35,68 @@ const Installments = () => {
       ...prevState,
       [field]: value,
     }));
-    console.log("Updated State:", { ...formState, [field]: value }); // Log the updated state
+    console.log('Updated State:', { ...formState, [field]: value }); // Log the updated state
   };
 
   const cardsData = [
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "primary-500",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'primary-500',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "secondary-400",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'secondary-400',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "danger-200",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'danger-200',
     },
     {
-      title: "5701",
-      content: "SR 535335",
-      icon: "الفواتير",
-      variant: "extended-700",
+      title: '5701',
+      content: 'SR 535335',
+      icon: 'الفواتير',
+      variant: 'extended-700',
     },
   ];
 
   const portfolios = [
     {
       id: 1,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 2,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 3,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
     {
       id: 4,
-      name: "Portfolio",
+      name: 'Portfolio',
     },
   ];
 
   const months = [
-    { id: 1, name: "January" },
-    { id: 2, name: "February" },
-    { id: 3, name: "March" },
-    { id: 4, name: "April" },
-    { id: 5, name: "May" },
-    { id: 6, name: "June" },
-    { id: 7, name: "July" },
-    { id: 8, name: "August" },
-    { id: 9, name: "September" },
-    { id: 10, name: "October" },
-    { id: 11, name: "November" },
-    { id: 12, name: "December" },
+    { id: 1, name: 'January' },
+    { id: 2, name: 'February' },
+    { id: 3, name: 'March' },
+    { id: 4, name: 'April' },
+    { id: 5, name: 'May' },
+    { id: 6, name: 'June' },
+    { id: 7, name: 'July' },
+    { id: 8, name: 'August' },
+    { id: 9, name: 'September' },
+    { id: 10, name: 'October' },
+    { id: 11, name: 'November' },
+    { id: 12, name: 'December' },
   ];
 
   const years = Array.from({ length: 16 }, (_, i) => ({
@@ -107,7 +107,7 @@ const Installments = () => {
   // Handle reset
   const handleReset = () => {
     setFormState(initialState);
-    console.log("State Reset:", initialState);
+    console.log('State Reset:', initialState);
   };
 
   return (
@@ -119,10 +119,10 @@ const Installments = () => {
           {/*  */}
           <div className="grid grid-cols-2 gap-2 md:gap-4 grid-rows-[repeat(2,max-content)] row-start-2 md:row-start-1">
             <div className="flex flex-col gap-4">
-              <InputWrapper title={"المحفظة"}>
+              <InputWrapper title={'المحفظة'}>
                 <Select
                   onValueChange={(id) => {
-                    handleInputChange("portfolio", id);
+                    handleInputChange('portfolio', id);
                   }}
                   value={formState.portfolio}
                 >
@@ -142,10 +142,10 @@ const Installments = () => {
                 </Select>
               </InputWrapper>
 
-              <InputWrapper title={"السنة"}>
+              <InputWrapper title={'السنة'}>
                 <Select
                   onValueChange={(year) => {
-                    handleInputChange("year", year);
+                    handleInputChange('year', year);
                   }}
                   value={formState.year}
                 >
@@ -165,10 +165,10 @@ const Installments = () => {
                 </Select>
               </InputWrapper>
 
-              <InputWrapper title={"الشهر"}>
+              <InputWrapper title={'الشهر'}>
                 <Select
                   onValueChange={(month) => {
-                    handleInputChange("month", month);
+                    handleInputChange('month', month);
                   }}
                   value={formState.month}
                 >
@@ -189,39 +189,39 @@ const Installments = () => {
               </InputWrapper>
             </div>
             <div className="flex flex-col gap-4">
-              <InputWrapper title={"رقم سداد"}>
+              <InputWrapper title={'رقم سداد'}>
                 <Input
                   type="text"
                   id="sadad-number"
                   placeholder="رقم سداد"
                   className="w-full h-12 border border-solid border-ivory-300"
                   onChange={(e) => {
-                    handleInputChange("sadadNumber", e.target.value);
+                    handleInputChange('sadadNumber', e.target.value);
                   }}
                   value={formState.sadadNumber}
                 />
               </InputWrapper>
 
-              <InputWrapper title={"اسم المستفيد"}>
+              <InputWrapper title={'اسم المستفيد'}>
                 <Input
                   type="text"
                   id="beneficiary-name"
                   placeholder="اسم المستفيد"
                   className="w-full h-12 border border-solid border-ivory-300"
                   onChange={(e) => {
-                    handleInputChange("beneficiaryName", e.target.value);
+                    handleInputChange('beneficiaryName', e.target.value);
                   }}
                   value={formState.beneficiaryName}
                 />
               </InputWrapper>
-              <InputWrapper title={"رقم العقد"}>
+              <InputWrapper title={'رقم العقد'}>
                 <Input
                   type="text"
                   id="contract-number"
                   placeholder="رقم العقد"
                   className="w-full h-12 border border-solid border-ivory-300"
                   onChange={(e) => {
-                    handleInputChange("contractNumber", e.target.value);
+                    handleInputChange('contractNumber', e.target.value);
                   }}
                   value={formState.contractNumber}
                 />

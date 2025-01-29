@@ -1,32 +1,33 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
-import * as yup from 'yup';
 import ValidationCheckList from './ValidationCheckList';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { CircleCheck, EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Label } from '@/components/ui/label';
+import { useMutation } from '@tanstack/react-query';
 import TermsModal from './TermsModal';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  closeModal,
+  getHasConsent,
+  getIsFirstLogin,
+  getUsername,
+} from '../store/loginSlice';
+import { changePasswordService } from '../services/changePasswordService';
+import passwordSchema from '../schema/passwordSchema';
+import { consentTermsService } from '../services/consentTermsService';
+import { STEPS } from '@/constants/steps';
+import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
+import { toast } from 'react-toastify';
 
-const ChangePasswordForm = () => {
-  const passwordSchema = yup.object().shape({
-    password: yup
-      .string()
-      .required('كلمة المرور مطلوبة')
-      .min(8, 'يجب أن تكون مكونة من 8 أحرف على الأقل')
-      .matches(/[A-Z]/, 'يجب أن تحتوي على حرف واحد كبير')
-      .matches(/[a-z]/, 'يجب أن تحتوي على حرف واحد صغير')
-      .matches(/\d/, 'يجب أن تحتوي على رقم واحد')
-      .matches(/[@$!%*?&#]/, 'يجب أن تحتوي على رمز واحد'),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref('password'), null], 'كلمة المرور غير متطابقة'),
-  });
-
+const ChangePasswordForm = ({ setStep }) => {
+  const [hasChangedPassword, setHasChangedPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -38,23 +39,53 @@ const ChangePasswordForm = () => {
   });
 
   const password = watch('password', ''); // Watch password for live updates
+  const username = useSelector(getUsername);
 
-  const onSubmit = (data) => {
-    console.log('Form Data:', data);
+  const onChangePassword = async (data) => {
+    return await changePasswordService({ ...data, username });
   };
+
+  const {
+    mutate,
+    isPending,
+    error: reqError,
+  } = useMutation({
+    mutationFn: onChangePassword,
+    onSuccess() {
+      setHasChangedPassword(true);
+    },
+  });
+
+  const onSubmit = (data) => mutate(data);
+
+  const hasConsent = useSelector(getHasConsent);
+  const isFirstLogin = useSelector(getIsFirstLogin);
+  const onConfirm = async () => await consentTermsService(username);
+
+  const handleToast = () =>
+    toast('تم تعيين كلمة المرور بنجاح!', {
+      type: 'success',
+      icon: <CircleCheck className="text-secondary-300" />,
+    });
+
+  const { mutate: handleConfirmModal } = useMutation({
+    mutationFn: onConfirm,
+    onSuccess() {
+      dispatch(closeModal());
+      setStep(STEPS.LOGIN);
+      handleToast();
+    },
+  });
+  const errorMsg = reqError?.response?.data?.message || FALLBACK_ERR_MSG;
 
   return (
     <div className="flex flex-col items-center justify-center px-3">
       <h2 className="mb-6 font-semibold text-ivory-950 text-xl">
         تعيين كلمة مرور جديدة
       </h2>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
         <div className="space-y-2">
-          <Label
-            className="block text-sm text-ivory-900"
-            htmlFor="password">
+          <Label className="block text-sm text-ivory-900" htmlFor="password">
             كلمة المرور
           </Label>
           <div className="relative w-full">
@@ -75,17 +106,12 @@ const ChangePasswordForm = () => {
               variant="ghost"
               size="sm"
               className="absolute rtl:left-0 ltr:right-0 top-0 h-full px-3 py-2 hover:bg-transparent peer-placeholder-shown:cursor-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:opacity-60"
-              onClick={() => setShowPassword((prev) => !prev)}>
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
               {showPassword ? (
-                <EyeIcon
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                />
+                <EyeIcon className="h-4 w-4" aria-hidden="true" />
               ) : (
-                <EyeOffIcon
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                />
+                <EyeOffIcon className="h-4 w-4" aria-hidden="true" />
               )}
             </Button>
           </div>
@@ -97,14 +123,15 @@ const ChangePasswordForm = () => {
         <div className="space-y-2">
           <Label
             className="block text-sm text-ivory-900"
-            htmlFor="confirmPassword">
+            htmlFor="confirmPassword"
+          >
             تأكيد كلمة المرور
           </Label>
           <div className="relative w-full">
             <Input
               id="confirmPassword"
               {...register('confirmPassword')}
-              type={showPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? 'text' : 'password'}
               className={`w-full border border-ivory-300 rounded px-2 py-3 h-auto font-normal text-sm  focus-visible:ring-0 focus-visible:border-primary-500 focus-visible:ring-offset-0  rtl:pl-9 ltr:pr-9 peer ${
                 errors.password
                   ? 'border-danger-200 focus-visible:border-danger-200'
@@ -118,30 +145,31 @@ const ChangePasswordForm = () => {
               variant="ghost"
               size="sm"
               className="absolute rtl:left-0 ltr:right-0 top-0 h-full px-3 py-2 hover:bg-transparent peer-placeholder-shown:cursor-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:opacity-60"
-              onClick={() => setShowConfirmPassword((prev) => !prev)}>
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+            >
               {showConfirmPassword ? (
-                <EyeIcon
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                />
+                <EyeIcon className="h-4 w-4" aria-hidden="true" />
               ) : (
-                <EyeOffIcon
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                />
+                <EyeOffIcon className="h-4 w-4" aria-hidden="true" />
               )}
             </Button>
           </div>
           <p className="text-red-500 text-sm">
             {errors.confirmPassword?.message}
           </p>
+          {reqError && (
+            <span className="text-danger-200 text-sm">{errorMsg}</span>
+          )}
         </div>
 
-        <Button className="h-auto py-4 w-full lg:w-[450px]">
+        <Button className="h-auto py-4 w-full" disabled={isPending}>
           تأكيد كلمة المرور
         </Button>
       </form>
-      <TermsModal />
+      <TermsModal
+        open={!hasConsent && isFirstLogin && hasChangedPassword}
+        onConfirm={handleConfirmModal}
+      />
     </div>
   );
 };
