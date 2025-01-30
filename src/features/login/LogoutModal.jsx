@@ -6,13 +6,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import Logout from "@/assets/icons/logout.svg?react";
+} from '@/components/ui/alert-dialog';
+import Logout from '@/assets/icons/logout.svg?react';
+import { useNavigate } from 'react-router';
 
 const LogoutModal = ({ isVisible, onClose }) => {
-  const handleLogout = async () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login', { replace: true });
     // Perform logout logic here
-    console.log("User logged out");
+    console.log('User logged out');
     onClose(false); // Close the modal
   };
 
