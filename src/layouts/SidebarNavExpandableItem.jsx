@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router';
-import ChevronIcon from '../assets/icons/chevron.svg?react';
 import { useState } from 'react';
+import { ChevronDownIcon } from 'lucide-react';
 
 const SidebarNavExpandableItem = ({
   isSidebarOpen,
   routes,
   title,
   beta,
-  Icon,
+  icon,
 }) => {
   const [isListExpanded, setIsListExpanded] = useState(false);
   const handleExpandList = () => {
@@ -27,7 +27,7 @@ const SidebarNavExpandableItem = ({
         }`}
       >
         <div className="flex gap-3 items-center w-full h-full rounded-2xl">
-          <Icon className="fill-white w-6 h-6" />
+          {icon}
           {isSidebarOpen && (
             <span className="text-sm font-semibold select-none">{title}</span>
           )}
@@ -38,8 +38,8 @@ const SidebarNavExpandableItem = ({
           )}
         </div>
         {isSidebarOpen && (
-          <ChevronIcon
-            className={`fill-white ${isListExpanded ? '-scale-y-100' : ''}`}
+          <ChevronDownIcon
+            className={`text-white ${isListExpanded ? '-scale-y-100' : ''}`}
           />
         )}
       </div>

@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import ChevronIcon from "../assets/icons/chevron.svg?react";
-import NotificationIcon from "../assets/icons/notification.svg?react";
-import CalendarIcon from "../assets/icons/calendar.svg?react";
-import LogoutIcon from "../assets/icons/logout.svg?react";
-import redfLogo from "../assets/images/redf-logo.jpeg";
-import LogoutModal from "@/features/login/LogoutModal";
+import redfLogo from '../assets/images/redf-logo.jpeg';
+import LogoutModal from '@/features/login/LogoutModal';
+import { Bell, ChevronDownIcon, CircleArrowOutDownLeft } from 'lucide-react';
 
 const Header = () => {
   const [isLogoutModalVisible, setIsLogoutModalVisible] = useState(false);
@@ -28,19 +25,14 @@ const Header = () => {
         </div>
         <div>
           <button className="rounded-full bg-secondary-400 p-[0.625rem]">
-            <ChevronIcon className="fill-white" />
+            <ChevronDownIcon className="text-white" />
           </button>
         </div>
       </section>
       <ul className="flex items-center gap-x-3">
         <li>
           <button className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-            <NotificationIcon className="fill-primary-500 w-5 h-5" />
-          </button>
-        </li>
-        <li>
-          <button className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-            <CalendarIcon className="fill-primary-500 w-5 h-5" />
+            <Bell className="text-primary-500 w-5 h-5" />
           </button>
         </li>
         <li>
@@ -48,7 +40,7 @@ const Header = () => {
             className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center"
             onClick={() => setIsLogoutModalVisible(true)}
           >
-            <LogoutIcon className="fill-white w-5 h-5" />
+            <CircleArrowOutDownLeft className="text-white w-5 h-5 rotate-45" />
           </button>
         </li>
       </ul>

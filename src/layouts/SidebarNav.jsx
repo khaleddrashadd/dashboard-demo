@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router';
-import HomeIcon from '../assets/icons/home.svg?react';
 import ReportIcon from '../assets/icons/report.svg?react';
-import AppsIcon from '../assets/icons/apps.svg?react';
-import NavToggleIcon from '../assets/icons/nav-toggle.svg?react';
-import LogoIcon from '../assets/icons/logo.svg?react';
+import LogoIcon from '../assets/icons/logo.svg';
 import SidebarNavExpandableItem from './SidebarNavExpandableItem';
+import { ArrowRightToLine, Grid2x2Plus, House } from 'lucide-react';
 
 const SidebarNav = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -25,7 +23,11 @@ const SidebarNav = () => {
       >
         <div className="flex flex-col gap-10 py-4">
           <div className="text-center bg-white max-w-40 w-full mx-auto -translate-y-2">
-            <LogoIcon className="max-w-40 w-full object-cover" />
+            <img
+              src={LogoIcon}
+              alt="logo"
+              className="max-w-40 w-full object-cover"
+            />
           </div>
         </div>
         <ul className="flex flex-col gap-[10px] py-3 px-2">
@@ -42,7 +44,7 @@ const SidebarNav = () => {
                   : 'flex gap-3 items-center w-full h-full rounded-2xl px-2 py-2'
               }
             >
-              <HomeIcon className="w-6 h-6 fill-white" />
+              <House className="w-6 h-6 text-white" />
               {isSidebarOpen && (
                 <span className="text-sm font-semibold">الرئيسية</span>
               )}
@@ -50,7 +52,7 @@ const SidebarNav = () => {
           </li>
           <SidebarNavExpandableItem
             title="التقارير"
-            Icon={ReportIcon}
+            icon={<ReportIcon className="fill-white w-6 h-6" />}
             isSidebarOpen={isSidebarOpen}
             routes={[
               { title: 'الإحصائيات', to: '/reports/statistics' },
@@ -64,7 +66,7 @@ const SidebarNav = () => {
           <SidebarNavExpandableItem
             beta
             title="الخدمات"
-            Icon={AppsIcon}
+            icon={<Grid2x2Plus className="text-white w-6 h-6" />}
             isSidebarOpen={isSidebarOpen}
             routes={[
               { title: 'ترحيل دفعات', to: '/payments' },
@@ -78,10 +80,10 @@ const SidebarNav = () => {
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className={` bg-ivory-50 rounded-md text-secondary-400 sm:flex hidden items-center justify-center absolute top-[60px] w-8 h-8 rtl:left-0 ltr:right-0 rtl:-translate-x-1/2 ltr:translate-x-1/2 shadow-sm z-99 p-2 rotate-0 ${
-            isSidebarOpen ? '!rotate-180' : ''
+            isSidebarOpen ? '' : '!rotate-180'
           }`}
         >
-          {<NavToggleIcon />}
+          {<ArrowRightToLine className="text-base" />}
         </button>
       </nav>
     </div>

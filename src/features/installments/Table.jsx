@@ -9,7 +9,7 @@ import {
 import { Card } from '@/components/ui/card';
 import Pagination from '@/components/Pagination';
 import { cn } from '@/lib/utils';
-import EmptyState from '@/assets/icons/empty-grid.svg?react';
+import EmptyState from '@/components/EmptyState';
 
 const InstallmentsTable = ({ className, ...props }) => {
   const data = [
@@ -178,10 +178,9 @@ const InstallmentsTable = ({ className, ...props }) => {
             ) : (
               <TableRow>
                 <TableCell colSpan={12} className="text-center py-10">
-                  <div className="flex flex-col justify-center items-center gap-6 mx-auto w-full p-4 text-lg font-semibold">
-                    <EmptyState className="w-56 h-48" />
+                  <EmptyState>
                     لم نحصل على نتائج، برجاء المحاولة مرة أخرى.
-                  </div>
+                  </EmptyState>
                 </TableCell>
               </TableRow>
             )}

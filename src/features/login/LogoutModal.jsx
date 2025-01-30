@@ -7,7 +7,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import Logout from '@/assets/icons/logout.svg?react';
+import { CircleArrowOutDownLeft } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 const LogoutModal = ({ isVisible, onClose }) => {
@@ -30,7 +30,7 @@ const LogoutModal = ({ isVisible, onClose }) => {
             <div className="flex flex-col gap-6 items-center">
               {/* Icon */}
               <div className="bg-primary-100 rounded-full p-8">
-                <Logout className="fill-primary-500 w-[53px] h-[53px]" />
+                <CircleArrowOutDownLeft className="text-primary-500 w-[53px] h-[53px] rotate-45" />
               </div>
 
               {/* Title */}
