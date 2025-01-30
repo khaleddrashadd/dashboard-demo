@@ -5,112 +5,112 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Card } from "@/components/ui/card";
-import Pagination from "@/components/Pagination";
-import { cn } from "@/lib/utils";
-import EmptyState from "@/assets/icons/empty-grid.svg?react";
+} from '@/components/ui/table';
+import { Card } from '@/components/ui/card';
+import Pagination from '@/components/Pagination';
+import { cn } from '@/lib/utils';
+import EmptyState from '@/assets/icons/empty-grid.svg?react';
 
 const InstallmentsTable = ({ className, ...props }) => {
   const data = [
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
     {
-      contractId: "123456780",
-      sadadId: "987654",
-      nationalId: "1236224577",
-      beneficiaryName: "987654",
-      mobile: "Bucket 1",
-      paidAmount: "30900 ريال",
-      paymentDate: "30900 ريال",
+      contractId: '123456780',
+      sadadId: '987654',
+      nationalId: '1236224577',
+      beneficiaryName: '987654',
+      mobile: 'Bucket 1',
+      paidAmount: '30900 ريال',
+      paymentDate: '30900 ريال',
     },
   ];
 
@@ -123,7 +123,7 @@ const InstallmentsTable = ({ className, ...props }) => {
   };
 
   return (
-    <Card className={cn("w-full shadow-sm", className)} {...props}>
+    <Card className={cn('w-full shadow-sm', className)} {...props}>
       <div className="rounded-md border">
         <Table dir="rtl">
           <TableHeader className="text-sm">
@@ -179,7 +179,6 @@ const InstallmentsTable = ({ className, ...props }) => {
               <TableRow>
                 <TableCell colSpan={12} className="text-center py-10">
                   <div className="flex flex-col justify-center items-center gap-6 mx-auto w-full p-4 text-lg font-semibold">
-                    {" "}
                     <EmptyState className="w-56 h-48" />
                     لم نحصل على نتائج، برجاء المحاولة مرة أخرى.
                   </div>

@@ -7,9 +7,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Pagination from '@/components/Pagination';
+import EmptyState from '@/components/EmptyState';
 
 const ContractsReportTable = () => {
-  const data = [
+  let data = [
     {
       contractId: '123456780',
       realEstateId: '987654',
@@ -76,38 +77,55 @@ const ContractsReportTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell className="text-center">{row.contractId}</TableCell>
-                <TableCell className="text-center">
-                  {row.realEstateId}
-                </TableCell>
-                <TableCell className="text-center">{row.fullName}</TableCell>
-                <TableCell className="text-center">{row.nationalId}</TableCell>
-                <TableCell className="text-center">{row.unitId}</TableCell>
-                <TableCell className="text-center">
-                  {row.contractStatus}
-                </TableCell>
-                <TableCell className="text-center">{row.dateInDays}</TableCell>
-                <TableCell className="text-center">
-                  {row.directAmount}
-                </TableCell>
-                <TableCell className="text-center">
-                  {row.monthlyAmount}
-                </TableCell>
-                <TableCell className="text-center">
-                  {row.installmentAmount}
-                </TableCell>
-                <TableCell className="text-center">
-                  {row.remainingAmount}
+            {data.length === 0 ? (
+              <TableRow>
+                <TableCell colspan="11">
+                  <EmptyState className="mx-auto">
+                    لم نحصل على نتائج، برجاء المحاولة مرة أخرى.
+                  </EmptyState>
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              data?.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell className="text-center">
+                    {row.contractId}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.realEstateId}
+                  </TableCell>
+                  <TableCell className="text-center">{row.fullName}</TableCell>
+                  <TableCell className="text-center">
+                    {row.nationalId}
+                  </TableCell>
+                  <TableCell className="text-center">{row.unitId}</TableCell>
+                  <TableCell className="text-center">
+                    {row.contractStatus}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.dateInDays}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.directAmount}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.monthlyAmount}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.installmentAmount}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {row.remainingAmount}
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
 
       <Pagination
+        className="justify-end"
         totalItems={1000}
         onPageChange={handlePageChange}
         onPageSizeChange={handlePageSize}

@@ -1,12 +1,15 @@
 import notFoundImg from '@/assets/icons/not-found.svg';
-const EmptyState = ({ children }) => {
+import { cn } from '@/lib/utils';
+const EmptyState = ({ children, className }) => {
   return (
-    <div className="flex items-center justify-center flex-col gap-2 py-4">
+    <div
+      className={cn(
+        'flex items-center justify-center flex-col gap-2 py-4',
+        className
+      )}
+    >
       <div className="p-5">
-        <img
-          src={notFoundImg}
-          alt="not found icon"
-        />
+        <img src={notFoundImg} alt="not found icon" />
       </div>
       {children}
     </div>

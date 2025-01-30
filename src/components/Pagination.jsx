@@ -1,15 +1,17 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const Pagination = ({
+  className,
   totalItems = 0,
   initialPageSize = 10,
   onPageChange = (page) => console.log(page),
@@ -72,7 +74,7 @@ const Pagination = ({
           key={i}
           onClick={() => handlePageChange(i)}
           className={`px-3 py-2 rounded ${
-            currentPage === i ? "border-primary-500 text-primary-500" : ""
+            currentPage === i ? 'border-primary-500 text-primary-500' : ''
           }`}
         >
           {i}
@@ -109,7 +111,9 @@ const Pagination = ({
     onPageSizeChange(Number(value));
   };
   return (
-    <div className="flex items-center justify-between px-2 py-4">
+    <div
+      className={cn('flex items-center justify-between px-2 py-4', className)}
+    >
       <div className="flex items-center px-2 py-4 gap-3 justify-end">
         <div className="flex items-center gap-1">
           <Button
@@ -138,7 +142,7 @@ const Pagination = ({
           onValueChange={handleValueChange}
           className="mr-auto"
         >
-          <SelectTrigger className="w-24">
+          <SelectTrigger className="w-24 px-3 py-1 bg-primary-50">
             <SelectValue>{pageSize}/page</SelectValue>
           </SelectTrigger>
           <SelectContent>
