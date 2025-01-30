@@ -15,6 +15,7 @@ import {
   getStatsService,
   getLegalOwnersService,
 } from '@/features/statistics/services/services';
+import ErrorFallback from '@/features/contracts/components/ErrorFallback';
 
 const Statistics = () => {
   const [legalOwnerId, setLegalOwnerId] = useState(null);
@@ -77,6 +78,7 @@ const Statistics = () => {
             <SelectTrigger className="w-[180px] bg-white">
               <SelectValue placeholder="الكل" />
             </SelectTrigger>
+
             <SelectContent>
               {legalOwnerLoading ? ( // Show spinner if data is loading
                 <div className="flex justify-center items-center p-2">
@@ -104,9 +106,11 @@ const Statistics = () => {
         </div>
       </div>
       {/*  */}
-      <div className="grid md:grid-cols-[repeat(2,1fr)] grid-cols-1 gap-4">
-        {!statsLoading ? <Card cardsData={statsData} /> : <CardSkeleton />}
-      </div>
+      <ErrorFallback>
+        <div className="grid md:grid-cols-[repeat(2,1fr)] grid-cols-1 gap-4">
+          {!statsLoading ? <Card cardsData={statsData} /> : <CardSkeleton />}
+        </div>
+      </ErrorFallback>
     </div>
   );
 };
