@@ -1,12 +1,8 @@
-[[
-redirects
-]]
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[
-build
-]
+[build]
   command = "CI=false npm run build"
   publish = "dist"
