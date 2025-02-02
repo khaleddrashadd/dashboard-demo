@@ -4,5 +4,5 @@
   status = 200
 
 [build]
-  command = "CI=false npm run build"
+  command = "CI=false npm run build:dev"
   publish = "dist"
