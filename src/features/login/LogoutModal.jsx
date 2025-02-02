@@ -3,6 +3,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
+  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -16,7 +17,6 @@ const LogoutModal = ({ isVisible, onClose }) => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login', { replace: true });
-    // Perform logout logic here
     console.log('User logged out');
     onClose(false); // Close the modal
   };
@@ -29,14 +29,14 @@ const LogoutModal = ({ isVisible, onClose }) => {
           <AlertDialogHeader>
             <div className="flex flex-col gap-6 items-center">
               {/* Icon */}
-              <div className="bg-primary-100 rounded-full p-8">
+              <AlertDialogTitle className="bg-primary-100 rounded-full p-8">
                 <CircleArrowOutDownLeft className="text-primary-500 w-[53px] h-[53px] rotate-45" />
-              </div>
+              </AlertDialogTitle>
 
               {/* Title */}
-              <AlertDialogTitle className="text-xl font-bold text-ivory-950">
+              <AlertDialogDescription className="text-xl font-bold text-ivory-950">
                 انت على وشك تسجيل الخروج من النظام
-              </AlertDialogTitle>
+              </AlertDialogDescription>
             </div>
           </AlertDialogHeader>
 

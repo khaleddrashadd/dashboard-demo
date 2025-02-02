@@ -11,7 +11,18 @@ import received_call from '@/assets/icons/stats/received_call.svg?react';
 import document from '@/assets/icons/stats/document.svg?react';
 import zap from '@/assets/icons/stats/zap.svg?react';
 import document_invalid from '@/assets/icons/stats/document_invalid.svg?react';
-
+{
+  /* <Wallet />; */
+  // <Notebook />;
+  // <BadgeCheck />;
+  // <AlarmClock />;
+  // <PhoneOutgoing />;
+  // <PhoneIncoming />;
+  // <Zap />;
+  // <SwatchBook />;
+  // <FileX2 />;
+  // <FileCheck2 />;
+}
 const Card = ({ cardsData }) => {
   const iconComponents = {
     wallet,
@@ -58,7 +69,7 @@ const Card = ({ cardsData }) => {
             return (
               <div
                 key={key}
-                className="shadow-md border-r-[4px] rounded-lg border-secondary-400 relative overflow-hidden 
+                className="shadow-md border-r-[4px] rounded-lg border-secondary-400 relative overflow-hidden
                 grid grid-cols-[max-content,1fr] items-center gap-x-3 py-4 px-5"
               >
                 <div className="col-start-1 col-span-1 row-start-1 row-span-2 w-16 h-16 bg-[#DFF4F1BD] rounded-md flex justify-center items-center shadow-sm">

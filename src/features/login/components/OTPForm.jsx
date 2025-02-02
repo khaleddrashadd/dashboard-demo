@@ -100,7 +100,7 @@ const OTPForm = ({ setStep }) => {
             <ArrowRight />
           </Button>
           <h2 className="font-semibold text-ivory-950 text-xl">
-            إعادة تعيين كلمة المرور
+            تأكيد عملية تسجيل الدخول
           </h2>
         </div>
         <div className="mb-6">

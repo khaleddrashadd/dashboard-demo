@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { resendOtpService } from '../services/otpService';
 import { useMutation } from '@tanstack/react-query';
 import { getUsername } from '../store/loginSlice';
@@ -6,27 +5,10 @@ import { useSelector } from 'react-redux';
 import { FALLBACK_ERR_MSG } from '@/constants/fallbacks';
 import { toast } from 'react-toastify';
 import { CircleCheck } from 'lucide-react';
+import useOTP from '../hooks/useOTP';
 
-const INTITIAL_TIME = 299; // 5 minutes
 const OTPCounter = () => {
-  const [time, setTime] = useState(INTITIAL_TIME);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime === 0) {
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-  // conver time to be min:sec
-
-  const modifedTime = `${
-    Math.floor(time / 60) ? Math.floor(time / 60) + ':' : ''
-  } ${time % 60}`;
+  const { formattedTime, isExpired, resetTimer } = useOTP();
 
   const username = useSelector(getUsername);
 
@@ -46,7 +28,7 @@ const OTPCounter = () => {
   } = useMutation({
     mutationFn: handleResend,
     onSuccess() {
-      setTime(INTITIAL_TIME);
+      resetTimer();
       handleToast();
     },
   });
@@ -60,17 +42,17 @@ const OTPCounter = () => {
         <span
           onClick={mutate}
           className={`"text-ivory-  " ${
-            !time && !isResendPending
+            isExpired && !isResendPending
               ? 'cursor-pointer underline'
               : ' cursor-not-allowed'
           }`}
         >
           إعادة الإرسال
         </span>
-        {!!time && (
+        {!isExpired && (
           <>
             <span className="text-ivory-900">خلال</span>
-            <span className="text-secondary-400">{`\u202A${modifedTime}`}</span>
+            <span className="text-secondary-400">{`\u202A${formattedTime}`}</span>
           </>
         )}
       </div>
