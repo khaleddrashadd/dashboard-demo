@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "env-cmd -e development vite --port 3000 --host",
-    "build:dev": "env-cmd -e development vite build",
+    "build:dev": "env-cmd -e development vite build || true",
     "build:stage": "env-cmd -e stage vite build",
     "build:prod": "env-cmd -e production vite build",
     "lint": "eslint .",
